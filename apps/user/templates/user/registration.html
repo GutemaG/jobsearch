@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static%}
+<!-- Hero Area End -->
+{%block content%}
+  <div class="container col-md-6">
+    <form action="#">
+      <div class="mt-10">
+        <label for="username">User Name</label>
+        <input type="text" name="username" placeholder="Username" required class="single-input">
+      </div>
+      <div class="mt-10">
+        <label for="password">Password</label>
+        <input type="password" name="last_name" placeholder="Password"  required class="single-input">
+      </div>
+      <a href="#" class="btn head-btn2">Login</a>
+    </form>
+  </div>
+{%endblock content%}

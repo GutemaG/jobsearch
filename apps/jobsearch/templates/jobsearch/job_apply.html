@@ -1,0 +1,105 @@
+{% extends 'base.html' %} {%block content%}
+<style>
+  select {
+    display: block;
+  }
+</style>
+<div class="container box_1170">
+  <form action="{% url 'job-apply' job.id %}" method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="first-name">First Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="first-name"
+          readonly
+          id="first-name"
+          placeholder="Enter your Name"
+          value="{{user.first_name}}"
+        />
+      </div>
+      <div class="form-group col-md-4">
+        <label for="last-name">Last Name</label>
+        <input
+          type="text"
+          class="form-control"
+          name="last-name"
+          id="last-name"
+          readonly
+          placeholder="Enter your last name"
+          value="{{user.last_name}}"
+        />
+      </div>
+      <div class="form-group col-md-4">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          readonly
+          placeholder="Enter your email"
+          value="{{user.email}}"
+        />
+      </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="education-level">Education</label>
+          <input
+            type="text"
+            class="form-control"
+            name="education-level"
+            id="education-level"
+            readonly
+            placeholder="Enter your last name"
+            value="{{user.applicant.education_level}}"
+          />
+      </div>
+      <div class="form-group col-md-4">
+        <label for="phone">Phone</label>
+        <input
+          type="text"
+          class="form-control"
+          id="phone"
+          readonly
+          placeholder="Enter your Phone number"
+          value="{{user.applicant.phone}}"
+        />
+      </div>
+      <div class="form-group col-md-4">
+        <label for="gender">Gender</label>
+        <input
+          type="text"
+          class="form-control"
+          id="gender"
+          readonly
+          placeholder="Enter your Gender number"
+          value="{{user.applicant.gender}}"
+        />
+      </div>
+    </div>
+    <div class="mb-3">
+      <small class="text-danger"> To change viste your profile <a class="text-primary" href="#">here</a></small>
+    </div>
+    <div class="form-group">
+      <label for="inputAddress">Address</label>
+      <input
+        type="text"
+        class="form-control"
+        id="inputAddress"
+        placeholder="1234 Main St"
+        
+      />
+    </div>
+    <div class="form-group">
+      <label for="resume">Upload Your Resume</label>
+      <input type="file" class="for-control form-control-file" id="resume" name="resume" required>
+      <a href="{{user.applicant.resume.url}}" class="text-primary">{{user.applicant.resume}}</a>
+      
+    </div>
+    <button type="submit" class="btn btn-primary">Sign in</button>
+  </form>
+</div>
+{% endblock %}

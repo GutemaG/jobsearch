@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{%load static%}
+<!-- Hero Area End -->
+{%block content%}
+<!-- Hero Area Start-->
+<div class="slider-area">
+  <div
+    class="single-slider section-overly slider-height2 d-flex align-items-center"
+    data-background="{% static 'assets/img/hero/about.jpg' %}"
+  >
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="hero-cap text-center">
+            <h2>UI/UX Designer</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Hero Area End -->
+<!-- job post company Start -->
+<div class="job-post-company pt-120 pb-120">
+  <div class="container">
+    <div class="row justify-content-between">
+      <!-- Left Content -->
+      <div class="col-xl-7 col-lg-8">
+        <!-- job single -->
+        <div class="single-job-items mb-50">
+          <div class="job-items">
+            <div class="company-img company-img-details">
+              <a href="#"><img src="{% static 'assets/img/icon/job-list1.png' %}" alt="" /></a>
+            </div>
+            <div class="job-tittle">
+    
+              <a href="#">
+                <h4>{{application.job.title}}</h4>
+              </a>
+              <ul>
+                <li>{{application.company.name}}</li>
+                <li><i class="fas fa-map-marker-alt"></i>{{job.region}}</li>
+                <li>{{job.salary}} Birr</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- job single End -->
+
+        <div class="job-post-details">
+          <div class="post-details1 mb-50">
+            <!-- Small Section Tittle -->
+            <div class="small-section-tittle">
+              <h3>Applicant</h3>
+            </div>
+            <h4>
+                <a class="text-primary" href="#">
+                    {{application.user.user.first_name}} {{application.user.user.last_name}}
+                </a>
+            </h4>
+          </div>
+          <div class="post-details2 mb-50">
+            <!-- Small Section Tittle -->
+            <div class="small-section-tittle">
+              <h4>Resume</h4>
+            </div>
+            {%if application.resume %}
+            <p>{{application.resume.name }} 
+                <a class="text-primary" href="{{user.applicant.resume.url}}">{{application.resume.url }}</a>
+            </p>
+            {%else%}
+                <h3>No resume found<h3>
+            {%endif%}
+          </div>
+          {% comment %}  
+          <div class="post-details2 mb-50">
+            <!-- Small Section Tittle -->
+            <div class="small-section-tittle">
+              <h4>Experience</h4>
+            </div>
+              <p>{{job.experience}}
+          </div>
+          <div class="post-details2 mb-50">
+            <!-- Small Section Tittle -->
+            <div class="small-section-tittle">
+              <h4>Required Experience Year</h4>
+            </div>
+              <p>{{job.experience_year}}
+          </div>
+          {% endcomment %}
+        </div>
+      </div>
+      <!-- Right Content -->
+      <div class="col-xl-4 col-lg-4">
+        <div class="post-details3 mb-50">
+          <!-- Small Section Tittle -->
+          <div class="small-section-tittle">
+            <h4>Applicantion Overview</h4>
+          </div>
+          <ul>
+            <li>Application date : <span>{{application.created_at|date}}</span></li>
+            <li>Applicant :
+                <span>
+                    <a class="text-primary" href="#">
+                        {{application.user.user.first_name}} {{application.user.user.last_name}}
+                    </a>
+                </span>
+            </li>
+            <li>Job type : <span>{{application.job.type}}</span></li>
+            <li>Salary : <span>{{application.job.salary}}</span></li>
+          </ul>
+          <div class="apply-btn2">
+            {% comment %} <a href="{%url 'job-apply' job.id %}" class="btn">Apply Now</a> {% endcomment %}
+            <button type="button" class="btn-danger btn-sm">Decline</button>
+            <button type="button" class=" btn-primary btn-sm">Accept(Interview)</button>
+            <button type="button" class=" btn-secondary btn-sm">Hire</button>
+
+          </div>
+        </div>
+        <div class="post-details4 mb-50">
+          <!-- Small Section Tittle -->
+          <div class="small-section-tittle">
+            <h4>Company Information</h4>
+          </div>
+          <span>{{application.job.company.name}}</span>
+          <p>
+            {{application.job.company.description}}
+          </p>
+          <ul>
+            <li>Name: <span>{{application.job.company.name}} </span></li>
+            <li>Web : <span> colorlib.com</span></li>
+            <li>Location : <span> {{application.job.city}}, {{application.job.region}}</span></li>
+            <li>Email: <span>carrier.colorlib@gmail.com</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- job post company End -->
+{%endblock content%}
+{% comment %} 
+TODO: pagination
+{% endcomment %}
