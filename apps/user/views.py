@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from apps.jobsearch.models import Company
-from django.contrib.auth.models import User
+from .models import User
 # Create your views here.
 
 def login(request):
