@@ -11,7 +11,7 @@ def index(request):
     context = {
         'categories':categories
     }
-    return render(request, 'jobsearch/index.html',context=context)
+    return render(request, 'index.html',context=context)
 def job_detail(request):
     return render(request, 'jobsearch/job_details.html')
 

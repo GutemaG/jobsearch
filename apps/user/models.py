@@ -5,16 +5,12 @@ from ..constants import (JOB_CATEGORIES,
     CITY_CHOICE,
     EDUCATIONAL_LEVEL_CHOICES,
     GENDER_CHOICES,
-    REGION_CHOICES,
+    REGION_CHOICES, USER_TYPE_CHOICE,
     )
-USER_TYPE_CHOICE = [
-    ("ADMIN","ADMIN"),
-    ("APPLICANT","APPLICANT"),
-    ("EMPLOYEE","EMPLOYEE")
-]
+
 class User(AbstractUser):
     gender = models.CharField(max_length=2,choices=GENDER_CHOICES)
-    phone = models.CharField(max_length=13)
+    phone = models.CharField(max_length=20)
     region = models.CharField(max_length=30,choices=REGION_CHOICES)
     city = models.CharField(max_length=15,choices=CITY_CHOICE)
     created_at = models.DateTimeField(auto_now_add=True)

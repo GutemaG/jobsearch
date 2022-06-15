@@ -23,14 +23,26 @@
             </div>
             <div class="col-md-6" style="height:48px">
               <div class="form-group">
-                <label for="education-level">Educational Level</label>
-                  <select class="form-control" namr="education-level" id="education-level" required v-bind="form.job_educational_level">
+                <label for="name">Educational Level</label>
+                <div class="form-select">
+                  <select style="display: none" id="education-level" required v-bind="form.job_educational_level">
                     <option value="ELEMENTARY">Elementary school</option>
                     <option value="HIGH_SCHOOL">High school</option>
                     <option value="BSc">Bachelors degree</option>
                     <option value="MSc">Masters degree</option>
                     <option value="PHD">Doctorate(PHD)</option>
                   </select>
+                  <div class="nice-select" tabindex="0">
+                    <span class="current">Educational Level</span>
+                    <ul class="list">
+                      <li data-value="ELEMENTARY" class="option">Elementary school</li>
+                      <li data-value="HIGH_SCHOOL" class="option">High school</li>
+                      <li data-value="BSc" class="option">Bachelors degree</li>
+                      <li data-value="MSc" class="option">Masters degree</li>
+                      <li data-value="PHD" class="option">Doctorate(PHD)</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -80,7 +92,7 @@
               <div class="form-group">
                 <label for="job-location">Location</label>
                 <div class="form-select">
-                  <select required class="form-control" name="job-location" id="job-location">
+                  <select required style="display: none" name="job-location" id="job-location">
                     <option value="1">Tigray</option>
                     <option value="2">Afar</option>
                     <option value="3">Amhara</option>
@@ -88,20 +100,40 @@
                     <option value="11">Addis Ababa</option>
                     <option value="12">Dire Dewa</option>
                   </select>
-                 
+                  <div class="nice-select" tabindex="0">
+                    <span class="current">Select Region</span>
+                    <ul class="list">
+                      <li data-value="1" class="option">Tigray</li>
+                      <li data-value="2" class="option">Afar</li>
+                      <li data-value="3" class="option">Amhara</li>
+                      <li data-value="4" class="option">Oromia</li>
+                      <li data-value="11" class="option">Addis Ababa</li>
+                      <li data-value="12" class="option">Dire Dewa</li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="name">Job Type</label>
-                  <select required class="form-control" id="job-type">
+                <div class="form-select">
+                  <select required style="display: none" id="job-type">
                     <option value="FULL_TIME">FULL TIME</option>
                     <option value="PART_TIME">PART TIME</option>
                     <option value="REMOTE">REMOTE</option>
                     <option value="FREELANCE">FREELANCE</option>
                   </select>
-
+                  <div class="nice-select" tabindex="0">
+                    <span class="current">Select Job Type</span>
+                    <ul class="list">
+                      <li data-value="FULL_TIME" class="option">FULL TIME</li>
+                      <li data-value="PART_TIME" class="option">PART TIME</li>
+                      <li data-value="FREELANCE" class="option">Freelance</li>
+                      <li data-value="REMOTE" class="option">REMOTE</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -112,16 +144,28 @@
           <div class="row">
             <div class="col-sm-6">
               <div class="form-group">
-                <label for="company">Select Your Company</label>
-                <input name="company" type="text" class="form-control" placeholder="Your Company" readonly/>
-      
+                <label for="name">Select Your Company</label>
+                <div class="form-select">
+                  <select  style="display: none"></select>
+                  <div class="nice-select" tabindex="0">
+                    <span class="current">Your Company Name</span>
+                    <!-- <ul class="list">
+                      <li data-value="1" class="option selected focus">City</li>
+                      <li data-value="2" class="option">Dhaka</li>
+                      <li data-value="3" class="option">Dilli</li>
+                      <li data-value="4" class="option">Newyork</li>
+                      <li data-value="5" class="option">Islamabad</li>
+                    </ul> -->
+                  </div>
                 </div>
               </div>
- 
+            </div>
             <div class="col-sm-6">
               <div class="form-group">
-                <label for="job-cateogry">Job Category</label>
-                  <select class="form-control" name="job-cateogry" required id="job-category" v-bind="form.job_category">
+                <label for="name">Job Category</label>
+                <div class="form-select">
+
+                  <select required style="display: none" id="job-category" v-bind="form.job_category">
                     <option value="Architecture">Architecture</option>
                     <option value="Construction">Construction</option>
                     <option value="Electrician">Electrician</option>
@@ -136,9 +180,28 @@
                     <option value="Computer Programmer" class="option">Computer Programmer</option>
                     <option value="Web Developer" class="option">Web Developer</option>
                   </select>
+                  <div class="nice-select" tabindex="0">
+                    <span class="current">Select Job Category</span>
+                    <ul class="list">
+                      <li data-value="Architecture" class="option">Architecture</li>
+                      <li data-value="Construction" class="option">Construction</li>
+                      <li data-value="Electrician" class="option">Electrician</li>
+                      <li data-value="Civil Engineer" class="option">Civil Engineer</li>
+                      <li data-value="Reporter" class="option">Reporter</li>
+                      <li data-value="Graphic Designer" class="option">Graphic Designer</li>
+                      <li data-value="Editor" class="option">Editor</li>
+                      <li data-value="Human Resources Manager" class="option">Human Resources Manager</li>
+                      <li data-value="Teacher" class="option">Teacher</li>
+                      <li data-value="Librarian" class="option">Librarian</li>
+                      <li data-value="Legislator" class="option">Legislator</li>
+                      <li data-value="Computer Programmer" class="option">Computer Programmer</li>
+                      <li data-value="Web Developer" class="option">Web Developer</li>
+
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
-          </didv>
 
           </div>
         </div>
@@ -160,7 +223,7 @@
             </div>
           </div>
         </div>
-        
+        XXXX
 
       </div>
       <div class="col-12">

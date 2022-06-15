@@ -1,5 +1,6 @@
 from operator import mod
 from statistics import mode
+from telnetlib import STATUS
 from unicodedata import category
 from django.db import models
 from apps.user.models import User
@@ -26,12 +27,14 @@ class Company(models.Model):
     name = models.CharField(max_length=300)
     region = models.CharField(max_length=30,choices=REGION_CHOICES)
     city = models.CharField(max_length=15,choices=CITY_CHOICE)
-    # document = models.FileField(upload_to="company",blank=True,null=True)
+    document = models.FileField(upload_to="company",blank=True,null=True)
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    email = models.EmailField()
+    status = models.BooleanField(default=False)
+    
 
-# TODO: add email address, status(approved || not), file appload
     def __str__(self):
         return self.name
 
@@ -50,9 +53,9 @@ class Job(models.Model):
 
     type = models.CharField(max_length=15,choices=JOB_TYPE_CHOICES)
     region = models.CharField(max_length=30,choices=REGION_CHOICES)
-    
-    # TODO: location - region and add city, add vacancy(how many person required)
-    # city
+    vacancy = models.IntegerField(default=1)
+
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -67,13 +70,15 @@ class Application(models.Model):
 # todo: about your self
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    # status = models.CharField(max_length=20, choices=APPLICATION_STATUS_CHOICES,default="PENDING")
-
+    status = models.CharField(max_length=20, choices=APPLICATION_STATUS_CHOICES,default="PENDING")
+    about_yourself = models.TextField(null=True,blank=True)
+    
     def __str__(self):
         return self.job.title
 
 # TODO: Actors: Applicant, Admin, Employer,
 """
+userCases
 post job
 apply job
 register(applicant, employee)

@@ -8,7 +8,7 @@
   <form action="{% url 'job-apply' job.id %}" method="post" enctype="multipart/form-data">
     {%csrf_token%}
     <div class="form-row">
-      <div class="form-group col-md-4">
+      <div class="form-group col-md-6">
         <label for="first-name">First Name</label>
         <input
           type="text"
@@ -20,7 +20,7 @@
           value="{{user.first_name}}"
         />
       </div>
-      <div class="form-group col-md-4">
+      <div class="form-group col-md-6">
         <label for="last-name">Last Name</label>
         <input
           type="text"
@@ -32,7 +32,9 @@
           value="{{user.last_name}}"
         />
       </div>
-      <div class="form-group col-md-4">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
         <label for="email">Email</label>
         <input
           type="email"
@@ -43,21 +45,21 @@
           value="{{user.email}}"
         />
       </div>
+      <div class="form-group col-md-6">
+        <label for="education-level">Education</label>
+        <input
+          type="text"
+          class="form-control"
+          name="education-level"
+          id="education-level"
+          readonly
+          placeholder="Enter your last name"
+          value="{{user.applicant.education_level}}"
+        />
+    </div>
     </div>
     <div class="form-row">
-        <div class="form-group col-md-4">
-          <label for="education-level">Education</label>
-          <input
-            type="text"
-            class="form-control"
-            name="education-level"
-            id="education-level"
-            readonly
-            placeholder="Enter your last name"
-            value="{{user.applicant.education_level}}"
-          />
-      </div>
-      <div class="form-group col-md-4">
+      <div class="form-group col-md-6">
         <label for="phone">Phone</label>
         <input
           type="text"
@@ -68,7 +70,7 @@
           value="{{user.applicant.phone}}"
         />
       </div>
-      <div class="form-group col-md-4">
+      <div class="form-group col-md-6">
         <label for="gender">Gender</label>
         <input
           type="text"
@@ -84,14 +86,15 @@
       <small class="text-danger"> To change viste your profile <a class="text-primary" href="#">here</a></small>
     </div>
     <div class="form-group">
-      <label for="inputAddress">Address</label>
-      <input
-        type="text"
+      <label for="description">Description</label>
+      <textarea
         class="form-control"
-        id="inputAddress"
-        placeholder="1234 Main St"
+        name="description"
+        id="description"
+        placeholder="Write about your self, why you intereseted in this job"
+        rows="5"
         
-      />
+      ></textarea>
     </div>
     <div class="form-group">
       <label for="resume">Upload Your Resume</label>
