@@ -1,7 +1,10 @@
+from email.mime import application
 from turtle import title
 from unicodedata import category
 from django.shortcuts import redirect, render
 from django.db.models import Count
+
+from apps.jobsearch.forms import JobCreationForm
 from .models import Application, Company, Job
 # Create your views here.
 from .models import Job
@@ -43,6 +46,7 @@ def job_apply(request,pk):
     return render (request, 'jobsearch/job_apply.html',context=context)
 
 def job_post(request):
+    job_form = JobCreationForm
     if request.method=='POST':
         job_title = request.POST.get('job-title')
         job_description =  request.POST.get('job-description')
@@ -74,7 +78,8 @@ def job_post(request):
             region=job_location,
             company=c
         )
-    return render (request, 'jobsearch/job_post.html')
+    context={'job_form':job_form}
+    return render (request, 'jobsearch/job_post.html',context=context)
 
 def job_detail(request, pk):
     job = Job.objects.get(pk=pk)
@@ -103,6 +108,13 @@ def job_application_list(request):
         'applications':applications
     }
     return render(request,'jobsearch/job_application_list.html',context=context)
+
+def job_user_application_list(request):
+    user = request.user
+    user_applications = user.applicant.application_set.all()
+    context={'applications':user_applications}
+    return render(request,'jobsearch/job_application_list.html',context=context)
+
 
 def job_application_detail(request,pk):
     application = Application.objects.get(pk=pk)

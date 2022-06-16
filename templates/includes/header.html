@@ -47,12 +47,12 @@
                       <ul class="submenu">
                         <li><a href="{%url 'profile' %}">Profile</a></li>
                         {% if user.company%}
-                        <li><a href="blog.html">Company</a></li>
+                        <li><a href="{%url 'your-company' %}">Company</a></li>
                         {% comment %}
                         <li><a href="blog.html">Jobs</a></li>
                         {% endcomment %} {%endif%}
                         <li>
-                          <a href="{%url 'job-application-list' %}"
+                          <a href="{%url 'job-user-application-list' %}"
                             >Your Job Applications</a
                           >
                         </li>

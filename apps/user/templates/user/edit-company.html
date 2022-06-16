@@ -1,0 +1,88 @@
+{% extends 'base.html' %} {% load static%}
+<!-- Hero Area End -->
+{%block content%}
+<div class="container">
+  <form
+    action="{%url 'edit-company' %}"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    {% csrf_token %}
+    <div class="form-roww">
+      <div class="form-group col-md-6">
+        <label for="company-name">Company Name</label>
+        {{company_form.name}}
+        {% comment %} <input
+          type="text"
+          class="form-control"
+          name="name"
+          id="first-name"
+          placeholder="Enter your Name"
+          value="{{company.name}}"
+        /> {% endcomment %}
+      </div>
+      <div class="form-group col-md-6">
+        <label for="region">Region</label>
+        {{company_form.region}}
+        {% comment %} <input
+          type="text"
+          class="form-control"
+          name="region"
+          id="region"
+          value="{{company.region}}"
+        /> {% endcomment %}
+      </div>
+      <div class="form-group col-md-6">
+        <label for="city">city</label>
+        {{company_form.city}}
+
+        {% comment %} <input
+          type="text"
+          class="form-control"
+          name="city"
+          id="city"
+          value="{{company.city}}"
+        /> {% endcomment %}
+      </div>
+      <div class="form-group col-md-6">
+        <label for="email">Email</label>
+        {{company_form.email}}
+        {% comment %} <input
+          type="text"
+          class="form-control"
+          name="email"
+          id="email"
+          value="{{company.email}}"
+        /> {% endcomment %}
+      </div>
+      
+      <div class="form-group col-md-6">
+        <label for="document">Document</label>
+        {{company_form.document}}
+        {% comment %} <input
+          type="file"
+          class="form-control-file"
+          name="document"
+          id="document"
+        /> {% endcomment %}
+        <a href="company.document.url">
+          <small class="text-primary">{{company.document}}</small>
+        </a>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="description">Description</label>
+        {{company_form.description}}
+        {% comment %} <textarea
+          type="text"
+          class="form-control"
+          name="description"
+          id="description"
+        >
+        {{company.description}}
+        </textarea> {% endcomment %}
+      </div>
+      <button class="btn btn-primary" type="submit">Update</button>
+    </div>
+  </form>
+  {%endblock content%}
+</div>

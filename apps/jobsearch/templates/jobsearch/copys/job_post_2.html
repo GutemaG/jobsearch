@@ -17,23 +17,20 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="job-title">Job Title</label>
-                {{job_form.title}}
-                {% comment %} <input class="form-control valid" required name="job-title" id="job-title" type="text"
-                  placeholder="Enter job title" v-model="form.job_title" /> {% endcomment %}
+                <input class="form-control valid" required name="job-title" id="job-title" type="text"
+                  placeholder="Enter job title" v-model="form.job_title" />
               </div>
             </div>
             <div class="col-md-6" style="height:48px">
               <div class="form-group">
                 <label for="education-level">Educational Level</label>
-                {{job_form.education_level}}
-{% comment %} 
                   <select class="form-control" namr="education-level" id="education-level" required v-bind="form.job_educational_level">
                     <option value="ELEMENTARY">Elementary school</option>
                     <option value="HIGH_SCHOOL">High school</option>
                     <option value="BSc">Bachelors degree</option>
                     <option value="MSc">Masters degree</option>
                     <option value="PHD">Doctorate(PHD)</option>
-                  </select> {% endcomment %}
+                  </select>
               </div>
             </div>
           </div>
@@ -41,18 +38,15 @@
         <div class="col-12">
           <div class="form-group">
             <label for="job-requirement">Job Requirements</label>
-            {{job_form.requirement}}
-            {% comment %} <textarea required class="form-control" name="job-requirement" id="job-requirement" rows="5"
-              placeholder="Enter job Requirements and skill" v-model="form.job_requirement"></textarea> {% endcomment %}
+            <textarea required class="form-control" name="job-requirement" id="job-requirement" rows="5"
+              placeholder="Enter job Requirements and skill" v-model="form.job_requirement"></textarea>
           </div>
         </div>
         <div class="col-12">
           <div class="form-group">
             <label for="job-experience">Experience</label>
-            {{job_form.experience}}
-
-            {% comment %} <textarea required class="form-control" id="job-experience" name="job-experience" rows="5"
-              placeholder="Enter job required Experiences" v-model="form.job_experience"></textarea> {% endcomment %}
+            <textarea required class="form-control" id="job-experience" name="job-experience" rows="5"
+              placeholder="Enter job required Experiences" v-model="form.job_experience"></textarea>
           </div>
         </div>
         <div class="col-12">
@@ -60,18 +54,15 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="job-experience_year">Experience Year</label>
-                {{job_form.experience_year}}
-                {% comment %} <input required class="form-control valid" name="job-experience_year" id="job-experience_year" type="number"
-                  placeholder="required Experience year" v-model="form.job_experience_year"> {% endcomment %}
+                <input required class="form-control valid" name="job-experience_year" id="job-experience_year" type="number"
+                  placeholder="required Experience year" v-model="form.job_experience_year">
               </div>
             </div>
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="job-salary">Salary</label>
-                {{job_form.salary}}
-
-                {% comment %} <input required class="form-control valid" name="job-salary" id="job-salary" type="number"
-                  placeholder="starting Salary in Birr" v-model="form.job_salary"> {% endcomment %}
+                <input required class="form-control valid" name="job-salary" id="job-salary" type="number"
+                  placeholder="starting Salary in Birr" v-model="form.job_salary">
               </div>
             </div>
           </div>
@@ -88,9 +79,7 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="job-location">Location</label>
-                {{job_form.region}}
-
-                {% comment %} <div class="form-select">
+                <div class="form-select">
                   <select required class="form-control" name="job-location" id="job-location">
                     <option value="1">Tigray</option>
                     <option value="2">Afar</option>
@@ -100,20 +89,18 @@
                     <option value="12">Dire Dewa</option>
                   </select>
                  
-                </div> {% endcomment %}
+                </div>
               </div>
             </div>
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="name">Job Type</label>
-                {{job_form.type}}
-
-                  {% comment %} <select required class="form-control" id="job-type">
+                  <select required class="form-control" id="job-type">
                     <option value="FULL_TIME">FULL TIME</option>
                     <option value="PART_TIME">PART TIME</option>
                     <option value="REMOTE">REMOTE</option>
                     <option value="FREELANCE">FREELANCE</option>
-                  </select> {% endcomment %}
+                  </select>
 
               </div>
             </div>
@@ -126,9 +113,7 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="company">Select Your Company</label>
-                {{job_form.company}}
-
-                {% comment %} <input name="company" type="text" class="form-control" placeholder="Your Company" readonly/> {% endcomment %}
+                <input name="company" type="text" class="form-control" placeholder="Your Company" readonly/>
       
                 </div>
               </div>
@@ -136,9 +121,7 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="job-cateogry">Job Category</label>
-                {{job_form.category}}
-
-                  {% comment %} <select class="form-control" name="job-cateogry" required id="job-category" v-bind="form.job_category">
+                  <select class="form-control" name="job-cateogry" required id="job-category" v-bind="form.job_category">
                     <option value="Architecture">Architecture</option>
                     <option value="Construction">Construction</option>
                     <option value="Electrician">Electrician</option>
@@ -152,7 +135,7 @@
                     <option value="Legislator" class="option">Legislator</option>
                     <option value="Computer Programmer" class="option">Computer Programmer</option>
                     <option value="Web Developer" class="option">Web Developer</option>
-                  </select> {% endcomment %}
+                  </select>
               </div>
             </div>
           </didv>
@@ -164,19 +147,15 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="job-start_date">Start Date</label>
-                {{job_form.start_date}}
-
-                {% comment %} <input required class="form-control valid" name="job-start_date" id="job-start_date" type="date"
-                  placeholder="job starting date for job application" v-model="form.job_start_date"> {% endcomment %}
+                <input required class="form-control valid" name="job-start_date" id="job-start_date" type="date"
+                  placeholder="job starting date for job application" v-model="form.job_start_date">
               </div>
             </div>
             <div class="col-sm-6">
               <div class="form-group">
                 <label for="job-end_date">End Date(Dead Line)</label>
-                {{job_form.end_date}}
-
-                {% comment %} <input required class="form-control valid" name="job-end_date" id="job-end_date" type="date"
-                  placeholder="job end for job application" v-model="form.job_end_date"> {% endcomment %}
+                <input required class="form-control valid" name="job-end_date" id="job-end_date" type="date"
+                  placeholder="job end for job application" v-model="form.job_end_date">
               </div>
             </div>
           </div>
@@ -187,10 +166,8 @@
       <div class="col-12">
         <div class="form-group">
           <label for="job-description">Job Description</label>
-          {{job_form.description}}
-
-          {% comment %} <textarea required class="form-control" name="job-description" id="job-description" rows="5"
-            placeholder="Job Description" v-model="form.job_description"></textarea> {% endcomment %}
+          <textarea required class="form-control" name="job-description" id="job-description" rows="5"
+            placeholder="Job Description" v-model="form.job_description"></textarea>
         </div>
       </div>
       <div class="form-group mt-3">

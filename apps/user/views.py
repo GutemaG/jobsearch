@@ -23,7 +23,7 @@ def logout_user(request):
     logout(request)
     return render (request, 'user/login.html')
 
-from .forms import ApplicantCreationForm, UserCreationForm
+from .forms import ApplicantCreationForm, CompanyUpdateForm, UserCreationForm
 def register(request):
     profile_form = UserCreationForm
     applicant_form = ApplicantCreationForm
@@ -35,7 +35,10 @@ def register(request):
             applicant = applicant_form.save(commit=False)
             applicant.user = user
             applicant.save()
+            u = authenticate(request, username=request.POST['username'],password=request.POST['password1'])
+            login(request,u)
             messages.success(request, "You Successfully Registered!")
+            return redirect ('home')
         else:
             print("invalid")
     
@@ -47,6 +50,31 @@ def profile(request):
     user = request.user
     context={'user':user}
     return render(request, "user/profile.html",context=context)
+
+# todo: user_company -> view_company
+@login_required
+def user_company(request):
+    user = request.user
+    user_company = user.company
+    context={'company':user_company}
+    return render(request, "user/company.html",context=context)
+
+@login_required
+def edit_company(request):
+    user = request.user
+    if request.method == "POST":
+        c = CompanyUpdateForm(request.POST,request.FILES,instance=user.company)
+        if c.is_valid():
+            c.save()
+            return redirect('your-company')
+        else:
+            print(c.errors)
+            print("invalid")
+    else:
+        print(request.method)
+    user_company = user.company
+    context={'company':user_company,'company_form':CompanyUpdateForm(instance=user.company)}
+    return render(request, "user/edit-company.html",context=context)
 
 
 def company_detail(request,pk):

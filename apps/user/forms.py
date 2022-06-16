@@ -1,11 +1,12 @@
 from dataclasses import fields
+import email
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.forms import ModelForm
 
 from apps.constants import CITY_CHOICE, EDUCATIONAL_LEVEL_CHOICES, GENDER_CHOICES, REGION_CHOICES, USER_TYPE_CHOICE
 from .models import User
-from apps.jobsearch.models import Applicant
+from apps.jobsearch.models import Applicant, Company
 
 
 class UserCreationForm(UserCreationForm):
@@ -21,7 +22,7 @@ class UserCreationForm(UserCreationForm):
     class Meta:
         model = User
         fields = {"username", "password1", "password2", "first_name",
-                  "last_name", "gender", "phone", "region", "city", "user_type"}
+                  "last_name", "gender", "phone", "region", "city", "user_type","email"}
         # exclude = []
         widgets = {
             'first_name': forms.TextInput(
@@ -40,19 +41,49 @@ class UserCreationForm(UserCreationForm):
                                  attrs={"class": "form-control"}),
             'user_type': forms.Select(choices=[("APPLICANT","APPLICANT"),("EMPLOYEE","EMPLOYEE")],
                                  attrs={"class": "form-control"}),
+            'email':forms.EmailInput(attrs={"class": "form-control", "placeholder": "Enter Email address"}),
         }
 
 
 class ApplicantCreationForm(ModelForm):
-    education_level = forms.CharField(
-        widget=forms.Select(choices=EDUCATIONAL_LEVEL_CHOICES,
-                            attrs={"class": "form-control", "placeholder": "Password"})
-    )
-    resume = forms.CharField(
-        widget=forms.FileInput(
-            attrs={"class": "form-control-file"})
-    )
+    # education_level = forms.CharField(
+    #     widget=forms.Select(choices=EDUCATIONAL_LEVEL_CHOICES,
+    #                         attrs={"class": "form-control", "placeholder": "Password"})
+    # )
+    # resume = forms.CharField(
+    #     widget=forms.FileInput(
+    #         attrs={"class": "form-control-file"})
+    # )
 
     class Meta:
         model = Applicant
         fields = {"education_level", "resume"}
+        widgets = {
+            'education_level': forms.Select(
+                attrs={"class": "form-control", 
+                }),
+            'resume': forms.FileInput(
+                attrs={"class": "form-control", 
+                }),
+          
+        }
+
+class CompanyUpdateForm(ModelForm):
+
+    class Meta:
+        model = Company
+        fields = ["name","region","email","city","document","description"]
+        widgets={
+            'name': forms.TextInput(
+                attrs={"class": "form-control", "placeholder": "Company Name"}),
+            'region': forms.Select(choices=REGION_CHOICES,
+                                   attrs={"class": "form-control"}),
+            'city': forms.Select(
+                                 attrs={"class": "form-control"}),
+            'email':forms.EmailInput(attrs={"class": "form-control", "placeholder": "Enter Email address"}),
+            'document': forms.FileInput(
+                attrs={"class": "form-control", 
+                }),
+            'description': forms.TextInput(
+                attrs={"class": "form-control", "placeholder": "Company Description"}),
+        }

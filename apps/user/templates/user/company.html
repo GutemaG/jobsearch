@@ -1,0 +1,94 @@
+{% extends 'base.html' %} {% load static%}
+<!-- Hero Area End -->
+{%block content%}
+<div class="container">
+    <div class="row">
+  <div class="col-md-8">
+    <div
+    <div class="form-group col-md-12">
+      <label for="company-name">Company Name</label>
+      <input
+        type="text"
+        class="form-control"
+        name="first-name"
+        readonly
+        id="first-name"
+        placeholder="Enter your Name"
+        value="{{company.name}}"
+      />
+    </div>
+    <div class="form-group col-md-12">
+      <label for="region">Region</label>
+      <input
+        type="text"
+        class="form-control"
+        name="region"
+        id="region"
+        readonly
+        value="{{company.region}}"
+      />
+    </div>
+    <div class="form-group col-md-12">
+      <label for="email">Email</label>
+      <input
+        type="text"
+        class="form-control"
+        name="email"
+        id="email"
+        readonly
+        value="{{company.email}}"
+      />
+    </div>
+    <div class="form-group col-md-12">
+      <label for="city">city</label>
+      <input
+        type="text"
+        class="form-control"
+        name="city"
+        id="city"
+        readonly
+        value="{{company.city}}"
+      />
+    </div>
+    <div class="form-group col-md-12">
+        <label for="document">Document</label>
+        <input
+          type="text"
+          class="form-control"
+          name="document"
+          id="document"
+          readonly
+          value="{{company.document}}"
+        />
+      </div>
+    <div class="form-group col-md-12">
+      <label for="description">Description</label>
+      <textarea
+        type="text"
+        class="form-control"
+        name="description"
+        id="description"
+        readonly >
+        {{company.description}}
+        </textarea>
+    </div>
+  </div>
+  
+  <div class="col-md-4 mt-4">
+    <div class="m-2">
+        <a class="btn btn-primary" href="{%url 'edit-company' %} ">Edit</a>
+    </div>
+    <div class="m-2">
+        <a class="btn btn-primary" href="{%url 'job-post' %} ">Post Job</a>
+    </div>
+    <div class="m-2">
+        <a class="btn btn-primary" href="{%url 'edit-company' %} ">View Job</a>
+    </div>
+    <div class="m-2">
+        <a class="btn btn-secondary" href="{%url 'edit-company' %} ">Applicatoins</a>
+    </div>
+  </div>
+</div>
+
+  {%endblock content%}
+</div>

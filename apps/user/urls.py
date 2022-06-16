@@ -10,4 +10,6 @@ urlpatterns = [
     path('profile/',views.profile,name='profile'),
     path('register-your-company/',views.register_company,name='register-company'),
     path('company-detail/<int:pk>/',views.company_detail,name='company-detail'),
+    path('your-company/',views.user_company,name='your-company'),
+    path('edit-company/',views.edit_company,name='edit-company'),
 ]
