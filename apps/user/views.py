@@ -5,6 +5,7 @@ from apps.jobsearch.models import Application, Company, Job
 from django.contrib.auth import logout,login,authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from .forms import ApplicantCreationForm, CompanyUpdateForm, LoginForm, ProfileUpdateForm, UserRegisetrationForm
 
 from .models import User
 # Create your views here.
@@ -17,6 +18,9 @@ def login_user(request):
         user = authenticate(request, username=username,password=password)
         if user is not None:
             login(request,user)
+            next = request.POST.get('next')
+            if(next):
+                return redirect(next)
             return redirect ('home')
         else:
             messages.warning(request,'Username or Password incorrect')
@@ -27,7 +31,6 @@ def logout_user(request):
     logout(request)
     return render (request, 'user/login.html')
 
-from .forms import ApplicantCreationForm, CompanyUpdateForm, LoginForm, ProfileUpdateForm, UserRegisetrationForm
 def register(request):
     profile_form = UserRegisetrationForm()
     applicant_form = ApplicantCreationForm()
@@ -126,6 +129,11 @@ def company_job_application_list(request):
     context={'job_apps':applications}
     return render(request,'user/company_job_application_list.html',context=context)
 
+def company_job_application_list(request,pk):
+    company = Company.objects.get(pk=pk)
+    jobs = Job.objects.filter(company=company)
+    context={'jobs':jobs}
+    return render(request, 'jobsearch/job_listing.html',context=context)
 
 @login_required
 def change_status(request,status,pk):
@@ -133,3 +141,6 @@ def change_status(request,status,pk):
     app.status = status
     app.save()
     return redirect('job-application-detail',pk)
+
+def contact(request):
+    return render(request, 'user/contact.html')

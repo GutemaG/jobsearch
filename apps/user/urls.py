@@ -15,6 +15,8 @@ urlpatterns = [
     path('edit-company/',views.edit_company,name='edit-company'),
     path('company-job-list/',views.company_list,name='company-job-list'),
     path('company-job-application-list/',views.company_job_application_list,name='company-job-application-list'),
+    path('company-job-application-list/<int:pk>',views.company_job_application_list,name='company-job-application-list'),
     
-    path('job-application-change-status/<str:status>/<int:pk>/',views.change_status,name="change-application-status")
+    path('job-application-change-status/<str:status>/<int:pk>/',views.change_status,name="change-application-status"),
+    path('contact/',views.contact,name="contact"),
 ]

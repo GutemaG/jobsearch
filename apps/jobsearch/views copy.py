@@ -1,27 +1,30 @@
 from email.mime import application
 from django.shortcuts import redirect, render
 from django.db.models import Count
-from django.core.paginator import Paginator
+
 from django.contrib.auth.decorators import login_required
 from apps.jobsearch.forms import JobApplicationForm, JobCreationForm
 from .models import Application, Company, Job
 from ..constants import JOB_CATEGORIES, JOB_TYPE_CHOICES, REGION_CHOICES
+# Create your views here.
 from .models import Job
 
-# Create your views here.
+
 def index(request):
     jobs = Job.objects.all()
     categories = jobs.values('category').annotate(
         total=Count('category')).order_by('-total')
     if request.GET.get('q'):
         print(request.GET.get('q'))
-    recent_jobs = jobs.order_by('-created_at')[:3]
     context = {
-        'categories': categories,
-        'recent_jobs':recent_jobs
+        'categories': categories
     }
-
     return render(request, 'index.html', context=context)
+
+
+def job_detail(request):
+    return render(request, 'jobsearch/job_details.html')
+
 
 def job_list(request, category=None):
     jobs = Job.objects.all()
@@ -66,33 +69,37 @@ def job_list(request, category=None):
 
     if category:
         jobs = Job.objects.filter(category=category)
-    if request.GET.get('jobSort'):
-        sort = request.GET.get('jobSort')
-        if sort=="TIME":
-            jobs = jobs.order_by('-created_at')
-        elif sort=="Year_Dsc":
-            print("Dec")
-            jobs = jobs.order_by('-experience_year')
-        elif sort=="Year_Asc":
-            jobs = jobs.order_by('experience_year')
-        elif sort=="Salary_Desc":
-            jobs = jobs.order_by('salary')
-        
-        elif sort=="Salary_Asc":
-            jobs = jobs.order_by('-salary')
-    
-    paginator = Paginator(jobs,5)
-    page_number = request.GET.get('page')
-    jobs = paginator.get_page(page_number)
     context = {
         'jobs': jobs,
         'job_category': JOB_CATEGORIES,
         'job_location': REGION_CHOICES,
-        'job_type': JOB_TYPE_CHOICES,
+        'job_type': JOB_TYPE_CHOICES
     }
     return render(request, 'jobsearch/job_listing.html', context=context)
 
-@login_required
+
+def job_apply2(request, pk):
+    job = Job.objects.get(pk=pk)
+    application_form = JobApplicationForm()
+    context = {
+        'job': job,
+        'form': application_form
+    }
+    if request.method == "POST":
+        user = request.user.applicant
+        if(request.FILES['resume']):
+            print(request.FILES['resume'])
+        else:
+            print("empty")
+        # Application.objects.create(
+        #     user=user,
+        #     job=job,
+        #     resume=resume
+        # )
+        return redirect('job-detail', pk)
+    return render(request, 'jobsearch/job_apply.html', context=context)
+
+
 def job_apply(request, pk):
     job = Job.objects.get(pk=pk)
     application_form = JobApplicationForm()
@@ -116,6 +123,44 @@ def job_apply(request, pk):
             print("invalid")
     return render(request, 'jobsearch/job_apply.html', context=context)
 
+
+def job_post2(request):
+    job_form = JobCreationForm
+    if request.method == 'POST':
+        job_title = request.POST.get('job-title')
+        job_description = request.POST.get('job-description')
+        job_requirement = request.POST.get('job-requirement')
+        job_experience = request.POST.get('job-experience')
+        job_start_date = request.POST.get('job-start_date')
+        job_end_date = request.POST.get('job-end_date')
+        job_salary = request.POST.get('job-salary')
+        job_category = request.POST.get('job-category')
+        job_educational_level = request.POST.get('job-educational_level')
+        job_type = request.POST.get('job-type')
+        job_location = request.POST.get('job-location')
+        job_company = request.POST.get('job-company')
+        job_experience_year = request.POST.get('job-experience_year')
+
+        c = Company.objects.first()
+        job = Job.objects.create(
+            title=job_title,
+            start_date=job_start_date,
+            end_date=job_end_date,
+            description=job_description,
+            category=job_category,
+            requirement=job_requirement,
+            education_level=job_educational_level,
+            experience=job_experience,
+            experience_year=job_experience_year,
+            salary=job_salary,
+            type=job_type,
+            region=job_location,
+            company=c
+        )
+    context = {'job_form': job_form}
+    return render(request, 'jobsearch/job_post.html', context=context)
+
+
 @login_required
 def job_post(request):
     job_form = JobCreationForm()
@@ -126,6 +171,7 @@ def job_post(request):
             return redirect('job-detail', job.pk)
         else:
             print(job_form.errors)
+            # print("invalid")
     context = {'job_form': job_form}
     return render(request, 'jobsearch/job_post.html', context=context)
 
@@ -136,6 +182,7 @@ def job_detail(request, pk):
         'job': job
     }
     return render(request, 'jobsearch/job_details.html', context=context)
+
 
 @login_required
 def job_application_list(request):
@@ -175,3 +222,22 @@ def edit_job(request, pk):
             print("errors ", j.errors)
     context = {'job': job, 'job_form': JobCreationForm(instance=job)}
     return render(request, "jobsearch/edit_job.html", context=context)
+
+
+"""
+ # print(request.POST.get('job_title'))
+        print("job_title", job_title)
+        print("job_description ",job_description)
+        print("job_description", job_description)
+        print("job_requirement", job_requirement)
+        print("job_experience", job_experience)
+        print("job_start_date", job_start_date)
+        print("job_end_date", job_end_date)
+        print("job_salary", job_salary)
+        print("job_category", job_category)
+        print("job_educational_level ",job_educational_level)
+        print("job_type ",job_type)
+        print("job_location ",job_location)
+        print("job_company ",job_company)
+        print("job_experience_year ",job_experience_year)
+"""

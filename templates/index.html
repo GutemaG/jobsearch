@@ -1,188 +1,211 @@
-{% extends 'base.html' %}
-{%load static%}
+{% extends 'base.html' %} {%load static%}
 <!--Header  -->
 {% block content%}
 <style>
-    * rgb(34 35 46 / 16%) */
-.section-overly {
-  position: relative;
-  z-index: 0;
-}
-.section-overly::before {
-  position: absolute;
-  content: "";
-  background-color: rgba(34, 35, 46, 0.16);
-  /* background-color: rgba(31, 43, 123, 0.8); */
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  z-index: -1;
-  background-repeat: no-repeat;
-}
+  * rgb(34 35 46 / 16%) */ .section-overly {
+    position: relative;
+    z-index: 0;
+  }
+  .section-overly::before {
+    position: absolute;
+    content: "";
+    background-color: rgba(34, 35, 46, 0.16);
+    /* background-color: rgba(31, 43, 123, 0.8); */
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    background-repeat: no-repeat;
+  }
 </style>
-        <!-- slider Area Start-->
-        <div class="slider-area ">
-            <!-- Mobile Menu -->
-            <div class="slider-active">
-                <div class="single-slider section-overly slider-height2 d-flex align-items-center"
-                    background
-                    >
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-xl-6 col-lg-9 col-md-10">
-                                <div class="hero__caption">
-                                    <h1>Find Your Dream Jobs</h1>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Search Box -->
-                        <div class="row">
-                            <div class="col-xl-8">
-                               
-                                <form  class="form-inline">
-                                    <div class="form-group mx-sm-3 mb-2">
-                                        <label for="searc-query" class="sr-only">Search</label>
-                                        <input type="text" class="form-control p-4" id="search-query" name="search-query"
-                                        placeholder="Job Title or keyword">
-                                      </div>
-                                      <button type="submit" class="btn btn-primary mb-2">Find Job</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!-- slider Area Start-->
+<div class="slider-area">
+  <!-- Mobile Menu -->
+  <div class="slider-active">
+    <div
+      class="single-slider section-overly slider-height2 d-flex align-items-center"
+      background
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-xl-6 col-lg-9 col-md-10">
+            <div class="hero__caption">
+              <h1>Find Your Dream Jobs</h1>
             </div>
+          </div>
         </div>
-        <!-- slider Area End-->
+        <!-- Search Box -->
+        <div class="row">
+          <div class="col-xl-8">
+            <form class="form-inline">
+              <div class="form-group mx-sm-3 mb-2">
+                <label for="searc-query" class="sr-only">Search</label>
+                <input
+                  type="text"
+                  class="form-control p-4"
+                  id="search-query"
+                  name="search-query"
+                  placeholder="Job Title or keyword"
+                />
+              </div>
+              <button type="submit" class="btn btn-primary mb-2">
+                Find Job
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- slider Area End-->
 
-        <!-- Our Services Start -->
-        <div class="our-services section-pad-t30">
-            <div class="container">
-                <!-- Section Tittle -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-tittle text-center">
-                            {% comment %} <span>FEATURED TOURS Packages</span> {% endcomment %}
-                            <h2>Browse Job Categories </h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row d-flex justify-contnet-center">
-                    {% for category in categories %}
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
-                            <div class="single-services text-center mb-30">
-                                <div class="services-cap">
-                                <h5>
-                                    <a href="{%url 'job-list' category.category %}">{{category.category}}</a></h5>
-                                    <span>({{category.total}})</span>
-                                </div>
-                            </div>
-                      
-                        </div>
-                    {% endfor %}
+<!-- Our Services Start -->
+<div class="our-services section-pad-t30">
+  <div class="container">
+    <!-- Section Tittle -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-tittle text-center">
+          {% comment %} <span>FEATURED TOURS Packages</span> {% endcomment %}
+          <h2>Browse Job Categories</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row d-flex justify-contnet-center">
+      {% for category in categories %}
+      <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6">
+        <div class="single-services text-center mb-30">
+          <div class="services-cap">
+            <h5>
+              <a href="{%url 'job-list' category.category %}"
+                >{{category.category}}</a
+              >
+            </h5>
+            <span>({{category.total}})</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
 
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6" style="display:none">
-                        <div class="single-services text-center mb-30">
-                            <div class="services-ion">
-                                <span class="flaticon-content"></span>
-                            </div>
-                            <div class="services-cap">
-                               <h5><a href="job_listing.html">Content Writer</a></h5>
-                                <span>(658)</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- More Btn -->
-                <!-- Section Button -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="browse-btn2 text-center mt-50">
-                            <a href="{%url 'job-list' %}" class="border-btn2">Browse All Jobs</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6" style="display: none">
+        <div class="single-services text-center mb-30">
+          <div class="services-ion">
+            <span class="flaticon-content"></span>
+          </div>
+          <div class="services-cap">
+            <h5><a href="job_listing.html">Content Writer</a></h5>
+            <span>(658)</span>
+          </div>
         </div>
-        <!-- Our Services End -->
-        <!-- Online CV Area Start -->
-         <div class="online-cv cv-bg section-overly pt-90 pb-120">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-                        <div class="cv-caption text-center">
-                            <p class="pera1">FEATURED TOURS Packages</p>
-                            {% comment %} <p class="pera2"> Make a Difference with Your Online Resume!</p> {% endcomment %}
-                            <a href="#" class="border-btn2 border-btn4">Upload your CV</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      </div>
+    </div>
+    <!-- More Btn -->
+    <!-- Section Button -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="browse-btn2 text-center mt-50">
+          <a href="{%url 'job-list' %}" class="border-btn2">Browse All Jobs</a>
         </div>
-        <!-- Online CV Area End-->
-        <!-- Featured_job_start -->
-        <section class="featured-job-area feature-padding">
-            <div class="container">
-                <!-- Section Tittle -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-tittle text-center">
-                            {% comment %} <span>Recent Job</span> {% endcomment %}
-                            <h2>Recent Jobs</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row justify-content-center">
-                    <div class="col-xl-10">
-    
-                         <!-- single-job-content -->
-                        <div class="single-job-items mb-30">
-                            <div class="job-items">
-                                <div class="company-img">
-                                    <a href="job_details.html"><img src="{% static 'assets/img/icon/job-list4.png' %}" alt=""></a>
-                                </div>
-                                <div class="job-tittle">
-                                    <a href="job_details.html"><h4>Digital Marketer</h4></a>
-                                    <ul>
-                                        <li>Creative Agency</li>
-                                        <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                        <li>$3500 - $4000</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="items-link f-right">
-                                <a href="job_details.html">Full Time</a>
-                                <span>7 hours ago</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Our Services End -->
+<!-- Online CV Area Start -->
+<div class="online-cv cv-bg section-overly pt-90 pb-120" style="display: none">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-10">
+        <div class="cv-caption text-center">
+          <p class="pera1">FEATURED TOURS Packages</p>
+          {% comment %}
+          <p class="pera2">Make a Difference with Your Online Resume!</p>
+          {% endcomment %}
+          <a href="#" class="border-btn2 border-btn4">Upload your CV</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Online CV Area End-->
+<!-- Featured_job_start -->
+<section class="featured-job-area feature-padding">
+  <div class="container">
+    <!-- Section Tittle -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-tittle text-center">
+          {% comment %} <span>Recent Job</span> {% endcomment %}
+          <h2>Recent Jobs</h2>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <div class="col-xl-10">
+        {% for job in recent_jobs %}
+        <div class="single-job-items mb-30 border-bottom border-bottom-1">
+          <div class="job-items">
+            <div class="company-img">
+              {% comment %}
+              <a href="#"
+                ><img src="{% static 'assets/img/icon/job-list1.png' %}" alt=""
+              /></a>
+              {% endcomment %}
             </div>
-        </section>
-        <!-- Featured_job_end -->
+            <div class="job-tittle job-tittle2">
+              <a href="{% url 'job-detail' job.id %}">
+                <h4>
+                  {{job.title|truncatechars:30}}
+                  <small class="ml-5"> {{job.category}}</small>
+                </h4>
+              </a>
+              <ul>
+                <li>{{job.company.name}}</li>
+                <li><i class="fas fa-map-marker-alt"></i>{{job.region}}</li>
+                <li>{{job.salary}} Birr</li>
+                <li>vacancy {{job.vacancy}}</li>
+
+                <li title="experience year required">
+                  {{job.experience_year}} year
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="items-link items-link2 f-right">
+            <a href="{%url 'job-detail' job.id%} ">{{job.type}}</a>
+            <span title="applicaion start-deadline"
+              >{{job.start_date}} - {{job.end_date}}</span
+            >
+          </div>
+        </div>
+        {% endfor %}
         
-       
-        <!-- Blog Area Start -->
-        <div class="home-blog-area blog-h-padding">
-            <div class="container">
-                <!-- Section Tittle -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-tittle text-center">
-                            <span>Our latest blog</span>
-                            <h2>blogs comming soon ...</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Featured_job_end -->
+
+<!-- Blog Area Start -->
+<div class="home-blog-area blog-h-padding">
+  <div class="container">
+    <!-- Section Tittle -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-tittle text-center">
+          <span>Our latest blog</span>
+          <h2>blogs comming soon ...</h2>
         </div>
-        <!-- Blog Area End -->
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Blog Area End -->
 {%endblock content%}
-    <!--Footer  -->
+<!--Footer  -->
 
-
-  <!-- JS here -->
-	
+<!-- JS here -->

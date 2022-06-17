@@ -26,18 +26,8 @@
                     <li><a href="{% url 'home' %}">Home</a></li>
                     <li><a href="{% url 'job-list'%}">Find a Jobs </a></li>
                     <li><a href="about.html">About</a></li>
-                    <li>
-                      <a href="#">Page</a>
-                      <ul class="submenu">
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="single-blog.html">Blog Details</a></li>
-                        <li><a href="elements.html">Elements</a></li>
-                        <li>
-                          <a href="{% url 'job-detail' %}">job Details</a>
-                        </li>
-                      </ul>
-                    </li>
-                    <li><a href="contact.html">Contact</a></li>
+                    
+                    <li><a href="{%url 'contact' %}">Contact</a></li>
                     {%if user.is_authenticated %}
                     <li>
                       <a href="#">
@@ -48,19 +38,12 @@
                         <li><a href="{%url 'profile' %}">Profile</a></li>
                         {% if user.company%}
                         <li><a href="{%url 'your-company' %}">Company</a></li>
-                        {% comment %}
-                        <li><a href="blog.html">Jobs</a></li>
-                        {% endcomment %} {%endif%}
+                        {%endif%}
                         <li>
                           <a href="{%url 'job-user-application-list' %}"
-                            >Your Job Applications</a
-                          >
+                            >Your Job Applications</a>
                         </li>
-
                         <li><a href="{%url 'logout' %}">Logout</a></li>
-                        <li>
-                          <a href="{% url 'job-detail' %}">job Details</a>
-                        </li>
                       </ul>
                     </li>
                     {%endif%}
