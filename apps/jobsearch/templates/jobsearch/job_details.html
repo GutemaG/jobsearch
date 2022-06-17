@@ -2,17 +2,29 @@
 {%load static%}
 <!-- Hero Area End -->
 {%block content%}
+<style>
+  .slider-height4 {
+    min-height: 250px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+  @media (max-width: 767px) {
+    .slider-height4 {
+      min-height: 200px;
+    }
+  }
+</style>
 <!-- Hero Area Start-->
 <div class="slider-area">
   <div
-    class="single-slider section-overly slider-height2 d-flex align-items-center"
-    data-background="{% static 'assets/img/hero/about.jpg' %}"
+    class="single-slider section-overly slider-height4 d-flex align-items-center"
   >
     <div class="container">
       <div class="row">
         <div class="col-xl-12">
           <div class="hero-cap text-center">
-            <h2>UI/UX Designer</h2>
+            <h2>{{job.title}}</h2>
           </div>
         </div>
       </div>
@@ -92,7 +104,7 @@
             <li>Location : <span>{{job.region}}</span></li>
             <li>Vacancy : <span>02</span></li>
             <li>Job type : <span>{{job.type}}</span></li>
-            <li>Salary : <span>{{job.salary}}</span></li>
+            <li>Salary : <span>{{job.salary}} Birr</span></li>
             <li>Application date : <span>{{job.start_date}}</span></li>
             <li>Application end date : <span>{{job.end_date}}</span></li>
           </ul>

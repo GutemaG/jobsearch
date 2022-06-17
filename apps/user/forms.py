@@ -1,30 +1,16 @@
+from ast import Mod
 from dataclasses import fields
 import email
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.forms import ModelForm
+from apps import user
 
 from apps.constants import CITY_CHOICE, EDUCATIONAL_LEVEL_CHOICES, GENDER_CHOICES, REGION_CHOICES, USER_TYPE_CHOICE
 from .models import User
 from apps.jobsearch.models import Applicant, Company
 
-
-class UserCreationForm(UserCreationForm):
-    password1 = forms.CharField(
-        widget=forms.PasswordInput(
-            attrs={"class": "form-control", "placeholder": "Password"})
-    )
-    password2 = forms.CharField(
-        widget=forms.PasswordInput(
-            attrs={"class": "form-control", "placeholder": "Confirm Password"})
-    )
-
-    class Meta:
-        model = User
-        fields = {"username", "password1", "password2", "first_name",
-                  "last_name", "gender", "phone", "region", "city", "user_type","email"}
-        # exclude = []
-        widgets = {
+user_creation_widgets = {
             'first_name': forms.TextInput(
                 attrs={"class": "form-control", "placeholder": "Enter First Name"}),
             'last_name': forms.TextInput(
@@ -44,17 +30,31 @@ class UserCreationForm(UserCreationForm):
             'email':forms.EmailInput(attrs={"class": "form-control", "placeholder": "Enter Email address"}),
         }
 
+class UserCreationForm(UserCreationForm):
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={"class": "form-control", "placeholder": "Password"})
+    )
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={"class": "form-control", "placeholder": "Confirm Password"})
+    )
+
+    class Meta:
+        model = User
+        fields = {"username", "password1", "password2", "first_name",
+                  "last_name", "gender", "phone", "region", "city", "user_type","email"}
+        # exclude = []
+        widgets = user_creation_widgets
+
+class ProfileUpdateForm(ModelForm):
+    class Meta:
+        model=User
+        fields = {"username", "first_name",
+                  "last_name", "gender", "phone", "region", "city", "user_type","email"}
+        widgets = user_creation_widgets
 
 class ApplicantCreationForm(ModelForm):
-    # education_level = forms.CharField(
-    #     widget=forms.Select(choices=EDUCATIONAL_LEVEL_CHOICES,
-    #                         attrs={"class": "form-control", "placeholder": "Password"})
-    # )
-    # resume = forms.CharField(
-    #     widget=forms.FileInput(
-    #         attrs={"class": "form-control-file"})
-    # )
-
     class Meta:
         model = Applicant
         fields = {"education_level", "resume"}
@@ -84,6 +84,6 @@ class CompanyUpdateForm(ModelForm):
             'document': forms.FileInput(
                 attrs={"class": "form-control", 
                 }),
-            'description': forms.TextInput(
+            'description': forms.Textarea(
                 attrs={"class": "form-control", "placeholder": "Company Description"}),
         }

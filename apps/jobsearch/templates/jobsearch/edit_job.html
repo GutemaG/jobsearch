@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{%load static%}
+{%block content%}
+
+<div class="container" id="app">
+  <div>
+   <h1>
+     Editing Job
+   </h1> 
+  </div>
+  <div class="col-lg-12">
+    <form action="{%url 'edit-job' job.id %}"
+        method="POST" class="form-contact" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="row">
+        <div class="col-lg-12 mb-3">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="job-title">Job Title</label>
+                {{job_form.title}}
+               </div>
+            </div>
+            <div class="col-md-6" style="height:48px">
+              <div class="form-group">
+                <label for="education-level">Educational Level</label>
+                {{job_form.education_level}}
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-12">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="job-experience_year">Experience Year</label>
+                {{job_form.experience_year}}
+                </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="job-salary">Salary</label>
+                {{job_form.salary}}
+
+                </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="name">Vacancy</label>
+            {{job_form.vacancy}}
+          </div>
+        </div>
+
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="job-location">Location</label>
+                {{job_form.region}}
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="name">Job Type</label>
+                {{job_form.type}}
+
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="company">Select Your Company</label>
+                {{job_form.company}}
+
+      
+                </div>
+              </div>
+ 
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="job-cateogry">Job Category</label>
+                {{job_form.category}}
+              </div>
+            </div>
+          </didv>
+
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="job-start_date">Start Date</label>
+                {{job_form.start_date}}</div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="job-end_date">End Date(Dead Line)</label>
+                {{job_form.end_date}}
+            </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <label for="job-requirement">Job Requirements</label>
+            {{job_form.requirement}}
+            </div>
+        </div>
+        <div class="col-12">
+          <div class="form-group">
+            <label for="job-experience">Experience</label>
+            {{job_form.experience}}
+
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="form-group">
+            <label for="job-description">Job Description</label>
+            {{job_form.description}}</div>
+        </div>
+        
+        <div class="form-group mt-3">
+            <button type="submit" class="button  boxed-btn">
+            Update
+            </button>
+        </div>
+    </div>
+  </form>
+</div>
+</div>
+
+{%endblock content %}

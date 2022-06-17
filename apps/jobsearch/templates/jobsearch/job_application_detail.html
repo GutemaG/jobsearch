@@ -38,9 +38,9 @@
                 <h4>{{application.job.title}}</h4>
               </a>
               <ul>
-                <li>{{application.company.name}}</li>
-                <li><i class="fas fa-map-marker-alt"></i>{{job.region}}</li>
-                <li>{{job.salary}} Birr</li>
+                <li>By {{application.user.user.first_name}} {{application.user.user.last_name}}</li>
+                {% comment %} <li><i class="fas fa-map-marker-alt"></i>{{job.region}}</li> {% endcomment %}
+                <li>{{application.job.salary}} Birr</li>
               </ul>
             </div>
           </div>
@@ -59,6 +59,13 @@
                 </a>
             </h4>
           </div>
+           <div class="post-details1 mb-50">
+            <!-- Small Section Tittle -->
+            <div class="small-section-tittle">
+              <h3>About</h3>
+            </div>
+            <p>{{application.about_yourself}}
+          </div>
           <div class="post-details2 mb-50">
             <!-- Small Section Tittle -->
             <div class="small-section-tittle">
@@ -66,7 +73,7 @@
             </div>
             {%if application.resume %}
             <p>{{application.resume.name }} 
-                <a class="text-primary" href="{{user.applicant.resume.url}}">{{application.resume.url }}</a>
+                <a class="text-primary" href="{{application.resume.url}}">show</a>
             </p>
             {%else%}
                 <h3>No resume found<h3>
@@ -108,12 +115,15 @@
             </li>
             <li>Job type : <span>{{application.job.type}}</span></li>
             <li>Salary : <span>{{application.job.salary}}</span></li>
+            <li>Status : <span>{{application.status}}</span></li>
           </ul>
           <div class="apply-btn2">
             {% comment %} <a href="{%url 'job-apply' job.id %}" class="btn">Apply Now</a> {% endcomment %}
-            <button type="button" class="btn-danger btn-sm">Decline</button>
-            <button type="button" class=" btn-primary btn-sm">Accept(Interview)</button>
-            <button type="button" class=" btn-secondary btn-sm">Hire</button>
+            {% if user is application.job.company.employee %}
+              <button type="button" class="btn-danger btn-sm">Decline</button>
+              <button type="button" class=" btn-primary btn-sm">Accept(Interview)</button>
+              <button type="button" class=" btn-secondary btn-sm">Hire</button>
+            {% endif %}
 
           </div>
         </div>
@@ -129,7 +139,7 @@
           <ul>
             <li>Name: <span>{{application.job.company.name}} </span></li>
             <li>Web : <span> colorlib.com</span></li>
-            <li>Location : <span> {{application.job.city}}, {{application.job.region}}</span></li>
+            <li>Location : <span> {{application.job.company.city}}, {{application.job.company.region}}</span></li>
             <li>Email: <span>carrier.colorlib@gmail.com</span></li>
           </ul>
         </div>

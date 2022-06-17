@@ -3,7 +3,7 @@
 <!-- Hero Area End -->
 {%block content%}
   <div class="container col-md-6">
-    <form action="{%url 'update-profile' %}" method="post" enctype="multipart/form-data">
+    <form action="{%url 'create-account' %}" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="form-row">
         <div class="form-group col-md-6">
@@ -31,7 +31,25 @@
           </div>
         </div>
       </div>
-      
+      <div class="form-row">
+          <div class="form-group col-md-6">
+            <div class="form-group">
+              <label for="password1">Password</label>
+              {{form.password1}}
+             <small id="emailHelp" class="form-text text-danger">{{form.password2.error}}</small>
+
+            </div>
+          </div>
+
+        <div class="form-group col-md-6">
+          <div class="form-group">
+            <label for="password2">Password confirmation</label>
+            {{form.password2}}
+            <small id="emailHelp" class="form-text text-danger">{{form.password2.error}}</small>
+
+          </div>
+         </div>
+      </div>
       <div class="form-row">
         <div class="form-group col-md-6">
           <div class="form-group">
@@ -69,14 +87,7 @@
         <label for="resume">Upload Resume</label>
         {{applicant_form.resume}}
       </div>
-      <button type="submit" class="btn btn-primary">Update</button>
-      {% if not user.have_company %}
-      <a class="text-primary" href="{%url 'register-company' %}">
-        Register your company</a>
-      {% endif %}
+      <button type="submit" class="btn btn-primary">Sign in</button>
     </form>
-
   </div>
 {%endblock content%}
-
-    

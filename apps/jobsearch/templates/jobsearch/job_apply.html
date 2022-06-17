@@ -67,7 +67,7 @@
           id="phone"
           readonly
           placeholder="Enter your Phone number"
-          value="{{user.applicant.phone}}"
+          value="{{user.phone}}"
         />
       </div>
       <div class="form-group col-md-6">
@@ -77,8 +77,7 @@
           class="form-control"
           id="gender"
           readonly
-          placeholder="Enter your Gender number"
-          value="{{user.applicant.gender}}"
+          value="{{user.get_gender_display}}"
         />
       </div>
     </div>
@@ -87,22 +86,29 @@
     </div>
     <div class="form-group">
       <label for="description">Description</label>
-      <textarea
+      {{form.about_yourself}}
+      {% comment %} <textarea
         class="form-control"
         name="description"
         id="description"
         placeholder="Write about your self, why you intereseted in this job"
         rows="5"
         
-      ></textarea>
+      ></textarea> {% endcomment %}
     </div>
     <div class="form-group">
       <label for="resume">Upload Your Resume</label>
-      <input type="file" class="for-control form-control-file" id="resume" name="resume" required>
-      <a href="{{user.applicant.resume.url}}" class="text-primary">{{user.applicant.resume}}</a>
-      
+      {{form.resume}}
+      {% comment %} <input type="file" class="for-control form-control-file" 
+      id="resume" name="resume" > {% endcomment %}
+      {% if user.applicant.resume %}
+        <a href="{{user.applicant.resume.url}}" class="text-primary">{{user.applicant.resume}}</a>
+      {% endif %}
     </div>
-    <button type="submit" class="btn btn-primary">Sign in</button>
+    <button type="submit" class="btn btn-primary">Apply</button>
   </form>
+  {% comment %} <div>
+    {{form.as_p}}
+  </div> {% endcomment %}
 </div>
 {% endblock %}

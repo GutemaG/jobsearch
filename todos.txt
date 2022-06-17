@@ -1,0 +1,10 @@
+TODO: When registering company makesure that 
+    -if user has already registerd company not register new
+
+TODO: Show job list based on job category from home page
+
+TODO: Search job and  start filetring jobs
+
+TODO: Pagination for job list
+TODO: Profile page for User to update information
+TODO: List job application to specific company
