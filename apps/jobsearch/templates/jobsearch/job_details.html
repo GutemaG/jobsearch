@@ -115,7 +115,8 @@
         <div class="post-details4 mb-50">
           <!-- Small Section Tittle -->
           <div class="small-section-tittle">
-            <h4>Company Information</h4>
+            <h4>Company Information
+            </h4>
           </div>
           <span>{{job.company.name}}</span>
           <p>
@@ -126,7 +127,18 @@
             <li>Web : <span> colorlib.com</span></li>
             <li>Location : <span> {{job.city}}, {{job.region}}</span></li>
             <li>Email: <span>carrier.colorlib@gmail.com</span></li>
+            <li>More: <a href="{%url 'company-detail' job.company.pk%}" class="text-primary">more ...</a></li>
+            
           </ul>
+          <div class="apply-btn2">
+            {% comment %} <a href="{%url 'job-apply' job.id %}" class="btn">Apply Now</a> {% endcomment %}
+            {% if user is application.job.company.employee %}
+              <button type="button" class="btn-danger btn-sm">Decline</button>
+              <button type="button" class=" btn-primary btn-sm">Accept(Interview)</button>
+              <button type="button" class=" btn-secondary btn-sm">Hire</button>
+            {% endif %}
+
+          </div>
         </div>
       </div>
     </div>

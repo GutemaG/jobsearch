@@ -10,6 +10,7 @@ from .models import User
 # Create your views here.
 
 def login_user(request):
+    u = LoginForm(request, data=request.POST)
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
@@ -18,19 +19,20 @@ def login_user(request):
             login(request,user)
             return redirect ('home')
         else:
-            return redirect ('login')
-    return render (request, 'user/login.html')
+            messages.warning(request,'Username or Password incorrect')
+    context = {'login_form':u}
+    return render (request, 'user/login.html',context=context)
 
 def logout_user(request):
     logout(request)
     return render (request, 'user/login.html')
 
-from .forms import ApplicantCreationForm, CompanyUpdateForm, ProfileUpdateForm, UserCreationForm
+from .forms import ApplicantCreationForm, CompanyUpdateForm, LoginForm, ProfileUpdateForm, UserRegisetrationForm
 def register(request):
-    profile_form = UserCreationForm
-    applicant_form = ApplicantCreationForm
+    profile_form = UserRegisetrationForm()
+    applicant_form = ApplicantCreationForm()
     if request.method == "POST":
-        profile_form = UserCreationForm(data=request.POST)
+        profile_form = UserRegisetrationForm(data=request.POST)
         applicant_form = ApplicantCreationForm(request.POST,request.FILES)
         if profile_form.is_valid() and applicant_form.is_valid():
             user = profile_form.save()
@@ -42,7 +44,7 @@ def register(request):
             messages.success(request, "You Successfully Registered!")
             return redirect ('home')
         else:
-            print("invalid")
+            messages.warning(request, "Check your Form")
     
     context = {'form':profile_form,'applicant_form':applicant_form}
     return render (request, 'user/registration.html',context=context)
@@ -60,21 +62,14 @@ def update_profile(request):
             profile_form.save()
             applicant_form.save()
         else:
-            print(profile_form.errors)
+            messages.warning(request, "Check your Form!")
+
     context = {'form':profile_form,'applicant_form':applicant_form}
     return render (request, 'user/profile.html',context=context)
 
-@login_required
-def update_profile2(request):
-    user = request.user
-    profile_form = UserCreationForm(instance=user)
-    applicant_form = ApplicantCreationForm(instance=user.applicant)
-    context = {'form':profile_form,'applicant_form':applicant_form}
-    return render (request, 'user/profile.html',context=context)
 
-# todo: user_company -> view_company
 @login_required
-def user_company(request):
+def view_company(request):
     user = request.user
     user_company = user.company
     context={'company':user_company}
@@ -89,10 +84,8 @@ def edit_company(request):
             c.save()
             return redirect('your-company')
         else:
-            print(c.errors)
-            print("invalid")
-    else:
-        print(request.method)
+            messages.warning(request, "Check your Form!")
+
     user_company = user.company
     context={'company':user_company,'company_form':CompanyUpdateForm(instance=user.company)}
     return render(request, "user/edit-company.html",context=context)
@@ -132,3 +125,11 @@ def company_job_application_list(request):
     applications = Application.objects.filter(job__company=company)
     context={'job_apps':applications}
     return render(request,'user/company_job_application_list.html',context=context)
+
+
+@login_required
+def change_status(request,status,pk):
+    app = Application.objects.get(pk=pk)
+    app.status = status
+    app.save()
+    return redirect('job-application-detail',pk)

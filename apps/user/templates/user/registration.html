@@ -5,6 +5,8 @@
   <div class="container col-md-6">
     <form action="{%url 'create-account' %}" method="post" enctype="multipart/form-data">
       {% csrf_token %}
+      {{form.errors.password2}}
+      
       <div class="form-row">
         <div class="form-group col-md-6">
           <label for="first_name">First Name</label>
@@ -45,7 +47,7 @@
           <div class="form-group">
             <label for="password2">Password confirmation</label>
             {{form.password2}}
-            <small id="emailHelp" class="form-text text-danger">{{form.password2.error}}</small>
+            <small id="emailHelp" class="form-text text-danger">{{form.errors.password2}}</small>
 
           </div>
          </div>

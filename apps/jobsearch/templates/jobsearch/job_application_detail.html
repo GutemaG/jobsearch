@@ -6,13 +6,13 @@
 <div class="slider-area">
   <div
     class="single-slider section-overly slider-height2 d-flex align-items-center"
-    data-background="{% static 'assets/img/hero/about.jpg' %}"
-  >
+    >
+    {% comment %} data-background="{% static 'assets/img/hero/about.jpg' %}" {% endcomment %}
     <div class="container">
       <div class="row">
         <div class="col-xl-12">
           <div class="hero-cap text-center">
-            <h2>UI/UX Designer</h2>
+            <h2>Application Detail</h2>
           </div>
         </div>
       </div>
@@ -119,10 +119,10 @@
           </ul>
           <div class="apply-btn2">
             {% comment %} <a href="{%url 'job-apply' job.id %}" class="btn">Apply Now</a> {% endcomment %}
-            {% if user is application.job.company.employee %}
-              <button type="button" class="btn-danger btn-sm">Decline</button>
-              <button type="button" class=" btn-primary btn-sm">Accept(Interview)</button>
-              <button type="button" class=" btn-secondary btn-sm">Hire</button>
+            {% if user == application.job.company.employee %}
+              <a href="{%url 'change-application-status' 'DECLINED' application.pk %}" class="btn-danger btn-sm">Decline</a>
+              <a href="{%url 'change-application-status' 'INTERVIEW' application.pk %}" class=" btn-primary btn-sm">Accept(Interview)</a>
+              <a href="{%url 'change-application-status' 'HIRED' application.pk %}" class=" btn-secondary btn-sm">Hire</a>
             {% endif %}
 
           </div>

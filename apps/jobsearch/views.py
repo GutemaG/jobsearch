@@ -151,7 +151,7 @@ def job_post2(request):
     context={'job_form':job_form}
     return render (request, 'jobsearch/job_post.html',context=context)
 
-
+@login_required
 def job_post(request):
     job_form = JobCreationForm()
     if request.method == "POST":
@@ -186,6 +186,7 @@ salary
 type 
 location"""
 
+@login_required
 def job_application_list(request):
     applications = Application.objects.all()
     context = {
@@ -193,13 +194,14 @@ def job_application_list(request):
     }
     return render(request,'jobsearch/job_application_list.html',context=context)
 
+@login_required
 def job_user_application_list(request):
     user = request.user
     user_applications = user.applicant.application_set.all()
     context={'applications':user_applications}
     return render(request,'jobsearch/job_application_list.html',context=context)
 
-
+@login_required
 def job_application_detail(request,pk):
     application = Application.objects.get(pk=pk)
     context = {

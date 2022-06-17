@@ -59,7 +59,9 @@
                                         </div>
                                         <div class="job-tittle job-tittle2">
                                             <a href="#">
-                                                <h4>{{application.job.title|truncatechars:30}}</h4>
+                                                <h4>{{application.job.title|truncatechars:30}}
+                                                    
+                                                </h4>
                                             </a>
                                             <ul>
                                                 <li>
@@ -67,6 +69,7 @@
                                                     <a class="text-primary" href="#">
                                                         {{application.user.user.first_name}} {{application.user.user.last_name}}
                                                     </a>
+                                                    <small class="ml-5 text-info">{{application.status}}</small>
                                                 </li>
                                             </ul>
                                         </div>

@@ -9,12 +9,13 @@ from apps import user
 from apps.constants import CITY_CHOICE, EDUCATIONAL_LEVEL_CHOICES, GENDER_CHOICES, REGION_CHOICES, USER_TYPE_CHOICE
 from .models import User
 from apps.jobsearch.models import Applicant, Company
+from django.contrib.auth.forms import AuthenticationForm
 
 user_creation_widgets = {
             'first_name': forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "Enter First Name"}),
+                attrs={"class": "form-control", "placeholder": "Enter First Name","required":""}),
             'last_name': forms.TextInput(
-                attrs={"class": "form-control", "placeholder": "Enter Last Name"}),
+                attrs={"class": "form-control", "placeholder": "Enter Last Name","required":""}),
             'phone': forms.TextInput(
                 attrs={"class": "form-control", "placeholder": "Enter Phone Number"}),
             'username': forms.TextInput(
@@ -30,7 +31,7 @@ user_creation_widgets = {
             'email':forms.EmailInput(attrs={"class": "form-control", "placeholder": "Enter Email address"}),
         }
 
-class UserCreationForm(UserCreationForm):
+class UserRegisetrationForm(UserCreationForm):
     password1 = forms.CharField(
         widget=forms.PasswordInput(
             attrs={"class": "form-control", "placeholder": "Password"})
@@ -46,6 +47,17 @@ class UserCreationForm(UserCreationForm):
                   "last_name", "gender", "phone", "region", "city", "user_type","email"}
         # exclude = []
         widgets = user_creation_widgets
+
+class LoginForm(AuthenticationForm):
+    class Meta:
+        widgets={
+        'username': forms.TextInput(
+                attrs={"class": "form-control", "placeholder": "Enter Username"}),
+         'password1': forms.TextInput(
+                attrs={"class": "form-control", "placeholder": "Password",'type':'password'}),
+            
+        }
+
 
 class ProfileUpdateForm(ModelForm):
     class Meta:
