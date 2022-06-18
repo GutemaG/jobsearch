@@ -4,39 +4,39 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <title>Job board HTML-5 Template</title>
+    <title>Job Search</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {% comment %}
+    {% comment %} 
     <link rel="manifest" href="site.webmanifest" />
     {% endcomment %}
     <link
       rel="shortcut icon"
       type="image/x-icon"
-      href="{% static 'assets/img/favicon.ico' %}"
+      href="{% static 'img/search-logo.png' %}"
     />
 
+    
     <!-- CSS here -->
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
-    {% comment %} <link
-      rel="stylesheet"
-      href="{% static 'assets/css/owl.carousel.min.css' %}"
-    /> {% endcomment %}
-    {% comment %} <link rel="stylesheet" href="{% static 'assets/css/flaticon.css' %}" /> {% endcomment %}
-    {% comment %} <link rel="stylesheet" href="{% static 'assets/css/price_rangs.css' %}" /> {% endcomment %}
     <link rel="stylesheet" href="{% static 'assets/css/slicknav.css' %}" />
-    {% comment %} <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}" /> {% endcomment %}
-    {% comment %} <link
-      rel="stylesheet"
-      href="{% static 'assets/css/magnific-popup.css' %}"
-    /> {% endcomment %}
     <link rel="stylesheet" href="{% static 'assets/css/fontawesome-all.min.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/themify-icons.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/slick.css' %}" />
-    {% comment %}
-    <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}" />
-    {% endcomment %}
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+    
+   
+    {% comment %} <link rel="stylesheet"
+      href="{% static 'assets/css/owl.carousel.min.css' %}"/> 
+    <link rel="stylesheet" href="{% static 'assets/css/flaticon.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/price_rangs.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'assets/css/magnific-popup.css' %}"
+    /> 
+    <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}" /> {% endcomment %}
+
   </head>
 
   <body>
@@ -76,26 +76,6 @@
         </div>
       </div>
       {% endfor %} {%endif%} {% block content %} {% endblock content %}
-      <!-- Our Services Start -->
-      <!-- Our Services End -->
-
-      <!-- Online CV Area Start -->
-      <!-- Online CV Area End-->
-
-      <!-- Featured_job_start -->
-      <!-- Featured_job_end -->
-
-      <!-- How  Apply Process Start-->
-      <!-- How  Apply Process End-->
-
-      <!-- Testimonial Start -->
-      <!-- Testimonial End -->
-
-      <!-- Support Company Start-->
-      <!-- Support Company End-->
-
-      <!-- Blog Area Start -->
-      <!-- Blog Area End -->
     </main>
     <!--Footer  -->
     {% include 'includes/footer.html' %}
@@ -112,14 +92,14 @@
     <script src="{% static 'assets/js/jquery.slicknav.min.js' %}"></script>
 
     <!-- Jquery Slick , Owl-Carousel Plugins -->
-    <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+    {% comment %} <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script> {% endcomment %}
     <script src="{% static 'assets/js/slick.min.js' %}"></script>
-    <script src="{% static 'assets/js/price_rangs.js' %}"></script>
+    {% comment %} <script src="{% static 'assets/js/price_rangs.js' %}"></script> {% endcomment %}
 
     <!-- One Page, Animated-HeadLin -->
-    <script src="{% static 'assets/js/wow.min.js' %}"></script>
-    <script src="{% static 'assets/js/animated.headline.js' %}"></script>
-    <script src="{% static 'assets/js/jquery.magnific-popup.js' %}"></script>
+    {% comment %} <script src="{% static 'assets/js/wow.min.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'assets/js/animated.headline.js' %}"></script> {% endcomment %}
+    {% comment %} <script src="{% static 'assets/js/jquery.magnific-popup.js' %}"></script> {% endcomment %}
 
     <!-- Scrollup, nice-select, sticky -->
     <script src="{% static 'assets/js/jquery.scrollUp.min.js' %}"></script>
