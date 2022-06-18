@@ -1,0 +1,103 @@
+{% extends 'base.html' %} {%load static%} {%block content%}
+<style>
+  .slider-height4 {
+    min-height: 250px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+  @media (max-width: 767px) {
+    .slider-height4 {
+      min-height: 200px;
+    }
+  }
+</style>
+<!-- Hero Area Start-->
+<div class="slider-area">
+  <div
+    class="single-slider section-overly slider-height4 d-flex align-items-center"
+  >
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="hero-cap text-center">
+            <h2>Result</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Hero Area End -->
+<!-- Job List Area Start -->
+<div class="job-listing-area pt-120 pb-120">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-9 col-lg-9 col-md-8">
+        <!-- Featured_job_start -->
+        <section class="featured-job-area">
+          <div class="container">
+            {% if jobs or companies %}
+            <div class="row">
+              <div class="col-xl-9 col-lg-9 col-md-8">
+                  <h2>Jobs</h2>
+                {% for job in jobs %}
+                <div
+                  class="single-job-items mb-30 border-bottom border-bottom-1"
+                >
+                  <div class="job-items">
+                    <div class="company-img"></div>
+                    <div class="job-tittle job-tittle2">
+                      <a href="{% url 'job-detail' job.id %}">
+                        <h4>
+                          {{job.title|truncatechars:30}}
+                          <small class="ml-5"> {{job.category}}</small>
+                        </h4>
+                      </a>
+                      <ul>
+                        <li>{{job.company.name}}</li>
+                        <li>
+                          <i class="fas fa-map-marker-alt"></i>{{job.region}}
+                        </li>
+                        <li>{{job.salary}} Birr</li>
+                        <li>vacancy {{job.vacancy}}</li>
+
+                        <li title="experience year required">
+                          {{job.experience_year}} year
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="items-link items-link2 f-right">
+                    <a href="{%url 'job-detail' job.id%} ">{{job.type}}</a>
+                    <span title="applicaion start-deadline"
+                      >{{job.start_date}} - {{job.end_date}}</span
+                    >
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+              <div class="col-xl-3 col-lg-3 col-md-4">
+                <h2>Companies</h2>
+                {% for company in companies %}
+                    <div>
+                        <div class="card">
+                            <div class="card-body">
+                              <a class="text-primary bold" href="{%url 'company-detail' company.pk %}"> {{company.name}}</a>
+                            </div>
+                          </div>
+                    </div>
+                {% endfor %}
+               </div>
+            </div>
+            {% else %}
+                <h2>No Result found Search again </h2>
+            {% endif %}
+
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock content%}

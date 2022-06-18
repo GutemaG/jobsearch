@@ -19,4 +19,5 @@ urlpatterns = [
     
     path('job-application-change-status/<str:status>/<int:pk>/',views.change_status,name="change-application-status"),
     path('contact/',views.contact,name="contact"),
+    path('about/',views.about,name="about"),
 ]

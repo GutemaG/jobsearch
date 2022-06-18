@@ -99,6 +99,7 @@ def company_detail(request,pk):
     context={'company':company}
     return render(request,'user/company_detail.html',context=context)
 
+@login_required
 def register_company(request):
     if request.method == 'POST':
         name =request.POST['company-name']
@@ -144,3 +145,7 @@ def change_status(request,status,pk):
 
 def contact(request):
     return render(request, 'user/contact.html')
+def about(request):
+    return render(request,'user/about.html')
+def handler_404_page(request,exception):
+    return render(request,'404.html')

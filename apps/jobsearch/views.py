@@ -1,13 +1,16 @@
 from email.mime import application
+from multiprocessing import context
+from unicodedata import category
 from django.shortcuts import redirect, render
 from django.db.models import Count
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
+from pkg_resources import Requirement
 from apps.jobsearch.forms import JobApplicationForm, JobCreationForm
 from .models import Application, Company, Job
 from ..constants import JOB_CATEGORIES, JOB_TYPE_CHOICES, REGION_CHOICES
 from .models import Job
-
+from django.db.models import Q
 # Create your views here.
 def index(request):
     jobs = Job.objects.all()
@@ -26,6 +29,9 @@ def index(request):
 def job_list(request, category=None):
     jobs = Job.objects.all()
     query = request.GET
+    # category_from_index
+    if request.GET.get('category_from_index'):
+        jobs = jobs.filter(category=request.GET.get('category_from_index'))
     if(query.get('category')):
         cat = query.get('category')
         if cat != "all":
@@ -45,7 +51,6 @@ def job_list(request, category=None):
             # gte==less than or equal to, <=
             jobs = jobs.filter(salary__lte=max_salary)
         year = query.get('experience_year')
-        print(year)
         if year:
             if year == ">6":
                 jobs = jobs.filter(experience_year__gte=6)
@@ -54,8 +59,8 @@ def job_list(request, category=None):
                 maxYear = year[2]
                 jobs = jobs.filter(experience_year__gte=minYear)
                 jobs = jobs.filter(experience_year__lte=maxYear)
+        
         posted_in = query.get('posted_in')
-
         if posted_in:
             from django.utils import timezone
             today = timezone.now().date().day
@@ -64,8 +69,7 @@ def job_list(request, category=None):
             if posted_in == "today":
                 jobs = jobs.filter(created_at__day=today)
 
-    if category:
-        jobs = Job.objects.filter(category=category)
+
     if request.GET.get('jobSort'):
         sort = request.GET.get('jobSort')
         if sort=="TIME":
@@ -175,3 +179,23 @@ def edit_job(request, pk):
             print("errors ", j.errors)
     context = {'job': job, 'job_form': JobCreationForm(instance=job)}
     return render(request, "jobsearch/edit_job.html", context=context)
+
+def job_search(request):
+    query = request.GET.get('search-query')
+    context={}
+    if(query):
+        # jobs = None
+        jobs = Job.objects.filter(
+            Q(title__icontains=query) | Q(type__icontains=query) | 
+            Q(category__icontains=query) | Q(requirement__icontains=query)|
+            Q(region__icontains=query) | Q(description__icontains=query)
+        )
+        companies = Company.objects.filter(
+            Q(name__icontains=query) | Q(region__icontains=query) | 
+            Q(city__icontains=query) | Q(description__icontains=query)
+        )
+        context['jobs'] = jobs
+        context['companies'] = companies
+        return render(request,'jobsearch/search.html',context=context)
+    else:
+        return redirect('homer')

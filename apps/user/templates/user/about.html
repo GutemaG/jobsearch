@@ -1,0 +1,43 @@
+{% extends 'base.html' %} {%load static%} {%block content%}
+<style>
+  .slider-height4 {
+    min-height: 250px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+  }
+  @media (max-width: 767px) {
+    .slider-height4 {
+      min-height: 200px;
+    }
+  }
+</style>
+<!-- Hero Area Start-->
+<div class="slider-area">
+  <div
+    class="single-slider section-overly slider-height4 d-flex align-items-center"
+  >
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-12">
+          <div class="hero-cap text-center">
+            <h2>About</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Hero Area End -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-xl-9 col-lg-9 col-md-8">
+      <div class="container">
+          <h3> My Name is XXXX</h3>
+          <p>{% lorem 5 b random %}<p>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock content%}

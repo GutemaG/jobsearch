@@ -21,3 +21,6 @@ class User(AbstractUser):
         if self.company:
             return True
         return False
+    
+    def is_admin(self):
+        return self.user_type=="ADMIN" and self.is_superuser

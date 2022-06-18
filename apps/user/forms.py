@@ -4,6 +4,7 @@ import email
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.forms import ModelForm
+from django.core.exceptions import ValidationError
 from apps import user
 
 from apps.constants import CITY_CHOICE, EDUCATIONAL_LEVEL_CHOICES, GENDER_CHOICES, REGION_CHOICES, USER_TYPE_CHOICE
@@ -43,10 +44,12 @@ class UserRegisetrationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = {"username", "password1", "password2", "first_name",
+        fields = {"username", "first_name",
                   "last_name", "gender", "phone", "region", "city", "user_type","email"}
         # exclude = []
         widgets = user_creation_widgets
+
+
 
 class LoginForm(AuthenticationForm):
     class Meta:

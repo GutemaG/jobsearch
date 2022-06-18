@@ -47,7 +47,7 @@
         <!-- Job Category Listing start -->
         <div class="job-category-listing mb-50">
           {% comment %} action="{%url 'job-list' %}" {% endcomment %}
-          <form>
+          <form action="#">
             <!-- single one -->
             <div class="single-listing">
               <div class="small-section-tittle2">
@@ -271,7 +271,6 @@
           </div>
         </section>
         {% if jobs.paginator.num_pages >= 2 %}
-       
         <!-- Featured_job_end -->
         <nav aria-label="Page navigation example">
           <ul class="pagination">
