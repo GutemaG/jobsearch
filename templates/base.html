@@ -7,36 +7,22 @@
     <title>Job Search</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {% comment %} 
-    <link rel="manifest" href="site.webmanifest" />
-    {% endcomment %}
     <link
       rel="shortcut icon"
       type="image/x-icon"
       href="{% static 'img/search-logo.png' %}"
     />
 
-    
     <!-- CSS here -->
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/slicknav.css' %}" />
-    <link rel="stylesheet" href="{% static 'assets/css/fontawesome-all.min.css' %}" />
+    <link
+      rel="stylesheet"
+      href="{% static 'assets/css/fontawesome-all.min.css' %}"
+    />
     <link rel="stylesheet" href="{% static 'assets/css/themify-icons.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/slick.css' %}" />
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
-    
-   
-    {% comment %} <link rel="stylesheet"
-      href="{% static 'assets/css/owl.carousel.min.css' %}"/> 
-    <link rel="stylesheet" href="{% static 'assets/css/flaticon.css' %}" />
-    <link rel="stylesheet" href="{% static 'assets/css/price_rangs.css' %}" />
-    <link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}" />
-    <link
-      rel="stylesheet"
-      href="{% static 'assets/css/magnific-popup.css' %}"
-    /> 
-    <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}" /> {% endcomment %}
-
   </head>
 
   <body>
@@ -63,7 +49,10 @@
     <main>
       {% if messages %} {% for message in messages %}
       <div class="container-fluid p-0">
-        <div class="alert alert-{{ message.tags }} alert-dismissible" role="alert">
+        <div
+          class="alert alert-{{ message.tags }} alert-dismissible"
+          role="alert"
+        >
           <button
             type="button"
             class="close"
@@ -83,34 +72,22 @@
     <!-- JS here -->
 
     <!-- All JS Custom Plugins Link Here here -->
-    {% comment %} <script src="{% static 'assets/js/vendor/modernizr-3.5.0.min.js' %}"></script> {% endcomment %}
-    <!-- Jquery, Popper, Bootstrap -->
     <script src="{% static 'assets/js/vendor/jquery-1.12.4.min.js' %}"></script>
     <script src="{% static 'assets/js/popper.min.js' %}"></script>
     <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+
     <!-- Jquery Mobile Menu -->
     <script src="{% static 'assets/js/jquery.slicknav.min.js' %}"></script>
 
-    <!-- Jquery Slick , Owl-Carousel Plugins -->
-    {% comment %} <script src="{% static 'assets/js/owl.carousel.min.js' %}"></script> {% endcomment %}
+    <!-- Jquery Slick-->
     <script src="{% static 'assets/js/slick.min.js' %}"></script>
-    {% comment %} <script src="{% static 'assets/js/price_rangs.js' %}"></script> {% endcomment %}
 
-    <!-- One Page, Animated-HeadLin -->
-    {% comment %} <script src="{% static 'assets/js/wow.min.js' %}"></script> {% endcomment %}
-    {% comment %} <script src="{% static 'assets/js/animated.headline.js' %}"></script> {% endcomment %}
-    {% comment %} <script src="{% static 'assets/js/jquery.magnific-popup.js' %}"></script> {% endcomment %}
-
-    <!-- Scrollup, nice-select, sticky -->
+    <!-- Scrollup, sticky -->
     <script src="{% static 'assets/js/jquery.scrollUp.min.js' %}"></script>
-    {% comment %}
-    <script src="{% static 'assets/js/jquery.nice-select.min.js' %}"></script>
-    {% endcomment %}
     <script src="{% static 'assets/js/jquery.sticky.js' %}"></script>
 
     <!-- contact js -->
     <script src="{% static 'assets/js/contact.js' %}"></script>
-    <script src="{% static 'assets/js/jquery.form.js' %}"></script>
     <script src="{% static 'assets/js/jquery.validate.min.js' %}"></script>
     <script src="{% static 'assets/js/mail-script.js' %}"></script>
     <script src="{% static 'assets/js/jquery.ajaxchimp.min.js' %}"></script>
