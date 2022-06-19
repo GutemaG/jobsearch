@@ -23,7 +23,8 @@ class User(AbstractUser):
         return False
     
     def is_admin(self):
-        return self.user_type=="ADMIN" and self.is_superuser
+        return self.is_superuser
+    
     def is_employer(self):
         return self.user_type == "EMPLOYEE"
     

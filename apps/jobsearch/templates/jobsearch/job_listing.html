@@ -243,16 +243,16 @@
                 </div>
                 <div class="job-tittle job-tittle2">
                   <a href="{% url 'job-detail' job.id %}">
-                    <h4>
+                    <h5>
                       {{job.title|truncatechars:30}}
                       <small class="ml-5"> {{job.category}}</small>
-                    </h4>
+                    </h5>
                   </a>
                   <ul>
-                    <li>{{job.company.name}}</li>
+                    <li title="company">{{job.company.name}}</li>
                     <li><i class="fas fa-map-marker-alt"></i>{{job.region}}</li>
                     <li>{{job.salary}} Birr</li>
-                    <li>vacancy {{job.vacancy}}</li>
+                    <li title="job vacancy">{{job.vacancy}}</li>
 
                     <li title="experience year required">
                       {{job.experience_year}} year
