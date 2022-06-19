@@ -1,9 +1,5 @@
-from operator import mod
-from statistics import mode
-from telnetlib import STATUS
-from unicodedata import category
 from django.db import models
-from apps.user.models import User
+from apps.user.models import User,Applicant,Employer
 
 from ..constants import (JOB_CATEGORIES,
     CITY_CHOICE,
@@ -14,16 +10,10 @@ from ..constants import (JOB_CATEGORIES,
     APPLICATION_STATUS_CHOICES
     )
 
-class Applicant(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    education_level = models.CharField(max_length=15,choices=EDUCATIONAL_LEVEL_CHOICES)
-    resume = models.FileField(upload_to='./cv',blank=True,null=True)
-    def __str__(self):
-        return self.user.username
 
 
 class Company(models.Model):
-    employee = models.OneToOneField(User, on_delete=models.CASCADE)
+    employee = models.OneToOneField(Employer, on_delete=models.CASCADE)
     name = models.CharField(max_length=300)
     region = models.CharField(max_length=30,choices=REGION_CHOICES)
     city = models.CharField(max_length=15,choices=CITY_CHOICE)

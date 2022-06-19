@@ -24,3 +24,16 @@ class User(AbstractUser):
     
     def is_admin(self):
         return self.user_type=="ADMIN" and self.is_superuser
+
+class Applicant(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    education_level = models.CharField(max_length=15,choices=EDUCATIONAL_LEVEL_CHOICES)
+    resume = models.FileField(upload_to='./cv',blank=True,null=True)
+    def __str__(self):
+        return self.user.username
+
+class Employer(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return self.user.username
