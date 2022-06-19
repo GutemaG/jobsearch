@@ -5,9 +5,10 @@ from . import views
 
 urlpatterns = [
     path('',views.index,name='home'),
+    
+    # url List for jobs
     path('job-list?<str:category>',views.job_list,name='job-list'),
     path('job-list/',views.job_list,name='job-list'),
-
     path('job-apply/<int:pk>',views.job_apply,name='job-apply'),
     path('job-post',views.job_post,name='job-post'),
     path('job-detail/<int:pk>',views.job_detail,name='job-detail'),
@@ -16,5 +17,7 @@ urlpatterns = [
     path('job-user-application-list',views.job_user_application_list,name='job-user-application-list'),
     path('edit-job/<int:pk>',views.edit_job,name='edit-job'),
     path('job-search',views.job_search,name='job-search'),
+
+
     
 ]

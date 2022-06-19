@@ -32,11 +32,9 @@
                     <div class="form-group">
                         <label for="company-region">Region</label>
                         <select class="form-control" id="company-region" name="company-region">
-                            <option>Oromia</option>
-                            <option>Oromia</option>
-                            <option>Oromia</option>
-                            <option>Oromia</option>
-                            <option>Oromia</option>
+                            {% for region in regions %}
+                              <option value="{{region.0}}">{{region.1}}</option>
+                            {% endfor %}
                         </select>
                     </div>
                 </div>
@@ -44,11 +42,10 @@
                     <div class="form-group">
                         <label for="company-city">City</label>
                         <select class="form-control" id="company-city" name="company-city">
-                            <option>Adama</option>
-                            <option>Adama</option>
-                            <option>Adama</option>
-                            <option>Adama</option>
-                            <option>Adama</option>
+                          {% for city in citys %}
+                            <option value="{{city.0}}">{{city.1}}</option>
+                        {% endfor %}  
+
                         </select>
                     </div>
                 </div>
@@ -58,7 +55,7 @@
         <div class="col-12">
             <div class="form-group">
               <label for="company-document">Upload Company documents</label>
-              <input type="file" name="company-document" class="form-control-file" id="company-document">
+              <input type="file" name="company-document" class="form-control-file" required id="company-document">
               <small class="text-info">upload one file with all necessary information about your company</small>
             </div>
         </div>

@@ -1,5 +1,6 @@
 
 from django.shortcuts import redirect, render
+from apps.constants import CITY_CHOICE, REGION_CHOICES
 from apps.jobsearch.forms import JobApplicationForm, JobCreationForm
 from apps.jobsearch.models import Application, Company, Job
 from django.contrib.auth import logout,login,authenticate
@@ -7,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import ApplicantCreationForm, CompanyUpdateForm, LoginForm, ProfileUpdateForm, UserRegisetrationForm
 
-from .models import User
+from .models import Employer, User
 # Create your views here.
 
 def login_user(request):
@@ -74,7 +75,7 @@ def update_profile(request):
 @login_required
 def view_company(request):
     user = request.user
-    user_company = user.company
+    user_company = user.employer.company
     context={'company':user_company}
     return render(request, "user/company.html",context=context)
 
@@ -82,16 +83,16 @@ def view_company(request):
 def edit_company(request):
     user = request.user
     if request.method == "POST":
-        c = CompanyUpdateForm(request.POST,request.FILES,instance=user.company)
+        c = CompanyUpdateForm(request.POST,request.FILES,instance=user.employer.company)
         if c.is_valid():
             c.save()
             return redirect('your-company')
         else:
             messages.warning(request, "Check your Form!")
 
-    user_company = user.company
-    context={'company':user_company,'company_form':CompanyUpdateForm(instance=user.company)}
-    return render(request, "user/edit-company.html",context=context)
+    user_company = user.employer.company
+    context={'company':user_company,'company_form':CompanyUpdateForm(instance=user.employer.company)}
+    return render(request, "user/edit_company.html",context=context)
 
 
 def company_detail(request,pk):
@@ -101,40 +102,52 @@ def company_detail(request,pk):
 
 @login_required
 def register_company(request):
+    user = request.user
+    print(user.user_type)
     if request.method == 'POST':
+        if user.user_type != "EMPLOYEE" or user.employee:
+            u = User.objects.get(pk=user.pk)
+            if u:
+                u.user_type = "EMPLOYEE"
+                u.save()
+                Employer.objects.create(user=u, approved=False)
+        
         name =request.POST['company-name']
         region = request.POST['company-region']
         city = request.POST['company-city']
         document = request.FILES['company-document']
         company = Company.objects.create(
-            employee=User.objects.get(pk=2),
+            employee=user.employer,
             name=name,
             region=region,
             city=city,
-            # document=document
+            document=document
         )
         return redirect('company-detail',company.pk)
-    return render(request, "user/register_company.html")
+    context = {"regions":REGION_CHOICES,"citys":CITY_CHOICE}
+    return render(request, "user/register_company.html",context=context)
 
 @login_required
 def company_list(request):
     user = request.user
-    jobs = user.company.job_set.all()
+    jobs = user.employer.company.job_set.all()
     context = {'jobs':jobs}
     return render(request, "user/company_job_list.html",context=context)
 
 @login_required
-def company_job_application_list(request):
-    company = request.user.company
-    applications = Application.objects.filter(job__company=company)
-    context={'job_apps':applications}
-    return render(request,'user/company_job_application_list.html',context=context)
-
 def company_job_application_list(request,pk):
     company = Company.objects.get(pk=pk)
     jobs = Job.objects.filter(company=company)
     context={'jobs':jobs}
     return render(request, 'jobsearch/job_listing.html',context=context)
+
+@login_required
+def company_job_application_list(request):
+    company = request.user.employer.company
+    applications = Application.objects.filter(job__company=company)
+    context={'job_apps':applications}
+    return render(request,'user/company_job_application_list.html',context=context)
+
 
 @login_required
 def change_status(request,status,pk):

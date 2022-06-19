@@ -59,15 +59,12 @@
       <div class="form-group col-md-6">
         <label for="document">Document</label>
         {{company_form.document}}
-        {% comment %} <input
-          type="file"
-          class="form-control-file"
-          name="document"
-          id="document"
-        /> {% endcomment %}
+        {% if company.document %}
         <a href="{{company.document.url}}">
           <small class="text-primary">{{company.document}}</small>
         </a>
+        {% endif %}
+
       </div>
       <div class="form-group col-md-6">
         <label for="description">Description</label>

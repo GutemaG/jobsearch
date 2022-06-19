@@ -18,12 +18,20 @@ class User(AbstractUser):
     user_type = models.CharField(max_length=20,choices=USER_TYPE_CHOICE,default="APPLICANT")
 
     def have_company(self):
-        if self.company:
+        if self.employer.company:
             return True
         return False
     
     def is_admin(self):
         return self.user_type=="ADMIN" and self.is_superuser
+    def is_employer(self):
+        return self.user_type == "EMPLOYEE"
+    
+    def can_register_company(self):
+        return self.employer
+    
+    def is_company_employer_is_approved(self):
+        return self.employer and self.employer.approved and self.employer.company.status
 
 class Applicant(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -34,6 +42,6 @@ class Applicant(models.Model):
 
 class Employer(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    
+    approved = models.BooleanField(default=False)
     def __str__(self):
         return self.user.username
