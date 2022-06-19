@@ -44,7 +44,7 @@
                         {% endif %}
                         
                         {% if user.is_admin == False %}
-                        {% if user.company  %}
+                        {% if user.is_employer  %}
                         <li><a href="{%url 'your-company' %}">Company</a></li>
                         {%endif%}
                         <li>
