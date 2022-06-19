@@ -123,6 +123,7 @@ def register_company(request):
             city=city,
             document=document
         )
+        messages.success(request,"successfully registerd")
         return redirect('company-detail',company.pk)
     context = {"regions":REGION_CHOICES,"citys":CITY_CHOICE}
     return render(request, "user/register_company.html",context=context)
