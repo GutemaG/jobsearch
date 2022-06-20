@@ -9,7 +9,14 @@ REGION_CHOICES = [
     ("AFAR","AFAR"),
     ("AMHARA","AMHARA"),
     ("OROMIA","OROMIA"),
-    ("SOMALIYA","SOMALIYA"),
+    ("SOMALI","SOMALI"),
+    ("BENISHANGUL GUMUZ","BENISHANGUL GUMUZ"),
+    ("SNNPR","SNNOR"),
+    ("GAMBELLA","GAMBELLA"),
+    ("HARARI","HARARI"),
+    ("SIDAMA","SIDAMA"),
+    ("ADDIS ABABA","ADDIS ABABA"),
+    ("DIRE DAWA","DIRE DAWA"),
 ]
 EDUCATIONAL_LEVEL_CHOICES = [
     ("ELEMENTARY","Elementray school"),
@@ -21,7 +28,19 @@ EDUCATIONAL_LEVEL_CHOICES = [
 CITY_CHOICE = [
     ("Addis Ababa","Addis Ababa"),
     ("Adama","Adama"),
-    ("Ambo","Ambo")
+    ("Ambo","Ambo"),
+    ("Mekele","Mekele"),
+    ("Bahir Dar","Bahir Dar"),
+    ("Dire Dawa","Dire Dawa"),
+    ("Jimma","Jimma"),
+    ("Jijiga","Jijiga"),
+    ("Shashamane","Shashamane"),
+    ("Bishoftu","Bishoftu"),
+    ("Arba Minch","Arba Minch"),
+    ("Hawassa","Hawassa"),
+    ("Nekemte","Nekemte"),
+    ("Gonder","Gonder")
+
 ]
 JOB_CATEGORIES = [
     ("Architecture","Architecture"),
