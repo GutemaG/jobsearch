@@ -55,9 +55,10 @@
                                                 <li>
                                                     <span>By </span>
                                                     <a class="text-primary" href="#">
-                                                        {{application.user.user.first_name}} {{application.user.user.last_name}}
+                                                        {{application.user.user.first_name}} {{application.user.user.last_name}} / <span class="text-success"> {{application.user}} </span>
                                                     </a>
                                                 </li>
+                                                <li> <span>Status: </span> <span class="text-info">{{application.status}}</span></li>
                                             </ul>
                                         </div>
                                     </div>

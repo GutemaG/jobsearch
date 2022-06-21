@@ -11,7 +11,7 @@ class Command(BaseCommand):
     help = "Creating fake 5 employer to your database"
     def handle(self, *args, **kwargs):
         fake = Faker(locale_list)
-        user = User.objects.filter(~Q(user_type = "APPLICANT"))[:5]
+        user = User.objects.all()[:5]
         for u in user:
             employer = Employer.objects.create(
                 user = u,

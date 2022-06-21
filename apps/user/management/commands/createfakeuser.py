@@ -7,7 +7,7 @@ from apps.jobsearch.models import *
 from apps.user.models import *
 
 class Command(BaseCommand):
-    help = "Creating fake 110 user to your database"
+    help = "Creating fake 60 user to your database"
     def handle(self, *args, **kwargs):
         fake = Faker(locale_list)
 
@@ -20,7 +20,8 @@ class Command(BaseCommand):
             gender = fake.word(ext_word_list=GENDER_CHOICES)[0]
             region = fake.word(ext_word_list=REGION_CHOICES)[0]
             phone = fake.phone_number()
-            user_type = fake.word(ext_word_list=USER_TYPE_CHOICE)[0]
+            user_type = 'APPLICANT'
+            
             u = User.objects.create(
             username = username,
             first_name=first_name,

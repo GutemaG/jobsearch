@@ -198,4 +198,4 @@ def job_search(request):
         context['companies'] = companies
         return render(request,'jobsearch/search.html',context=context)
     else:
-        return redirect('homer')
+        return redirect('home')

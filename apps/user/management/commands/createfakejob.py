@@ -15,7 +15,7 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         fake = Faker(locale_list)
         # user = User.objects.filter(~Q(user_type = "APPLICANT"))[:5]
-        company = Company.objects.filter(status=True)
+        company = Company.objects.filter(status=True).filter(employee__approved=True)
         num= [i for i in range(1,30)]
        
         for i in range(200):

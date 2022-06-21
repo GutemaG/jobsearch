@@ -31,8 +31,19 @@ class User(AbstractUser):
     def can_register_company(self):
         return self.employer
     
-    def is_company_employer_is_approved(self):
+    def is_company_and_employer_is_approved(self):
         return self.employer and self.employer.approved and self.employer.company.status
+    
+    def create_superuser(self, username, email=None, password=None, **extra_fields):
+        extra_fields.setdefault("is_staff", True)
+        extra_fields.setdefault("is_superuser", True)
+        extra_fields.setdefault("user_type", "ADMIN")
+        if extra_fields.get("is_staff") is not True:
+            raise ValueError("Superuser must have is_staff=True.")
+        if extra_fields.get("is_superuser") is not True:
+            raise ValueError("Superuser must have is_superuser=True.")
+
+        return self._create_user(username, email, password, **extra_fields)
 
 class Applicant(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

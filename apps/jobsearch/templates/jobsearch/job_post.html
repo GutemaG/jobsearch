@@ -9,7 +9,7 @@
    </h1> 
   </div>
   <div class="col-lg-12">
-    {% if user.is_company_employer_is_approved %}
+    {% if user.is_company_and_employer_is_approved %}
     <form action="{%url 'job-post' %}" method="post" class="form-contact">
       {% csrf_token %}
       <div class="row">
@@ -32,7 +32,6 @@
           </div>
         </div>
         
-        </div>
         <div class="col-12">
           <div class="row">
             <div class="col-sm-6">
@@ -141,11 +140,11 @@
           POST
         </button>
       </div>
+    </form>
+    {% else %}
+      <h2 class="text-info"> Sorry We are reviewing your account, we will contact you! </h2>
+    {% endif %}
   </div>
-  </form>
-  {% else %}
-    <h2 class="text-info"> Sorry We are reviewing your account, we will contact you! </h2>
-  {% endif %}
   <div>
   </div>
 </div>

@@ -7,11 +7,11 @@ from apps.jobsearch.models import *
 from apps.user.models import *
 
 class Command(BaseCommand):
-    help = "Creating fake 100 applicant to your database"
+    help = "Creating fake 50 applicant to your database"
     def handle(self, *args, **kwargs):
         fake = Faker(locale_list)
-        user = User.objects.all()
-        randome_users = [fake.unique.random_element(user) for i in range(100)]
+        user = User.objects.all()[1:]
+        randome_users = [fake.unique.random_element(user) for i in range(1,51)]
         for u in randome_users:
             edu_level = fake.word(ext_word_list=EDUCATIONAL_LEVEL_CHOICES)[0]
             applicant = Applicant.objects.create(

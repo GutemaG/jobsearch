@@ -115,7 +115,8 @@
             </li>
             <li>Job type : <span>{{application.job.type}}</span></li>
             <li>Salary : <span>{{application.job.salary}}</span></li>
-            <li>Status : <span>{{application.status}}</span></li>
+
+            <li><h5> Status : <h3 class="text-warning">{{application.status}}</h3> </h5> </li>
           </ul>
           <div class="apply-btn2">
             {% comment %} <a href="{%url 'job-apply' job.id %}" class="btn">Apply Now</a> {% endcomment %}
