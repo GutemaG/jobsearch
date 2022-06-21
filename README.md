@@ -20,23 +20,23 @@ This system is developed using djagno framework
    1. ``` python manage.py makemigrations```
    2. ``` python manage.py migrate ```
 9.  create superuser 
-   - ```python manage.py createsuperuser ```
-   -  use username 'admin' password 'admin'
-  
-  !! next step(10) is not necessary
+       - ```python manage.py createsuperuser ```
+       -  use username **admin** password **admin**
+
 10.  create fakedate if you want to all with password 'password'
-      - **NB: if you want to create fake data you must follow the steps accordingly** 
-   1.  create 60 fake user
-     - ``` python manage.py createfakeuser ```
-   2. create 50 fake applicant
-     - ``` python manage.py createfakeapplicant ```
-   3. create fake 5 employer
-     - ``` python manage.py createfakeemployer ```
-   4. create fake 5 company
-     - ``` python manage.py createfakecompany```
-   5. create 200 fake jobs
-     - ``` python manage.py createfakejob```
-   6. create 00 fake applications for a users
-     - ``` python manage.py createfakeapplication ```
+     -  This is not necessary
+     -  **NB: if you want to create fake data you must follow the steps accordingly**
+     1.  create 60 fake user
+            - ``` python manage.py createfakeuser ```
+      2. create 50 fake applicant
+         - ``` python manage.py createfakeapplicant ```
+      3. create fake 5 employer
+         - ``` python manage.py createfakeemployer ```
+      4. create fake 5 company
+         - ``` python manage.py createfakecompany```
+      5. create 200 fake jobs
+         - ``` python manage.py createfakejob```
+      6. create 00 fake applications for a users
+         - ``` python manage.py createfakeapplication ```
 11.  run you server
-   - ``` python manage.py runserver```
+      - ``` python manage.py runserver```
