@@ -12,7 +12,7 @@ class Command(BaseCommand):
         fake = Faker(locale_list)
 
         
-        fake_user_names = [fake.unique.first_name() for i in range(110)]
+        fake_user_names = [fake.unique.user_name() for i in range(110)]
         for username in fake_user_names:
             first_name = fake.first_name()
             last_name = fake.last_name()
