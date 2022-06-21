@@ -1,12 +1,14 @@
 
+# from email.headerregistry import Group
 from django.contrib import admin
+from django.contrib.auth.models import Group
 from apps.jobsearch.models import Company
 from .models import Employer, User,Applicant
 from django.contrib import messages
 from django.utils.translation import ngettext
 
 # Register your models here.
-
+admin.site.unregister(Group)
 class ApplicantInline(admin.TabularInline):
     model = Applicant
     can_delete = False
