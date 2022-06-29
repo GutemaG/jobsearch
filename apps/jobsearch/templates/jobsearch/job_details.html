@@ -110,14 +110,13 @@
             <li>Application end date : <span>{{job.end_date}}</span></li>
           </ul>
           {% if request.user == job.company.employee.user %}
-          {% comment %} {{job.company.employee.user}} {% endcomment %}
-          <div class="apply-btn2">
-            <a href="{%url 'job-apply' job.id %}" class="btn">Apply Now</a>
-          </div>
+            <div class="apply-btn2">
+              <a href="{%url 'edit-job' job.id %}" class="btn">Edit</a>
+            </div>
           {% else %}
-          <div class="apply-btn2">
-            <a href="{%url 'edit-job' job.id %}" class="btn">Edit</a>
-          </div>
+            <div class="apply-btn2">
+              <a href="{%url 'job-apply' job.id %}" class="btn">Apply Now</a>
+            </div>
           {% endif %}
         </div>
 

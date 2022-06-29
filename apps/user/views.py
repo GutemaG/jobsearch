@@ -163,3 +163,17 @@ def about(request):
     return render(request,'user/about.html')
 def handler_404_page(request,exception):
     return render(request,'404.html')
+
+from django.core.mail import send_mail
+def send_email(request):
+    if request.method == "POST":
+        # message = request.POST.get('message')
+        message = "testing"
+        name = request.POST.get('name')
+        # from_email = request.POST.get('email')
+        # subject = request.POST.get('subject')
+        subject ='testing packages'
+        from_email = 'mamamohammed31@gmail.com'
+
+        print(send_mail(subject,message,from_email,['bir13gud17@gmail.com',],fail_silently=True))
+    return redirect('home')
